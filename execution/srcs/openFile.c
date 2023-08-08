@@ -6,7 +6,7 @@
 /*   By: yachaab <yachaab@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/23 17:30:57 by yachaab           #+#    #+#             */
-/*   Updated: 2023/08/02 23:23:57 by yachaab          ###   ########.fr       */
+/*   Updated: 2023/08/08 13:03:25 by yachaab          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,7 +62,6 @@ static void	main_work_help(t_data *data, t_file *file)
 		close(data->out);
 }
 
-// FIXME: Line: 80: g_glob is static for testing add strlen instead of 10;
 static int	main_work(t_data *data, t_file *file)
 {
 	if (file->type == 2)
@@ -76,7 +75,7 @@ static int	main_work(t_data *data, t_file *file)
 	else if (file->type == -1)
 	{
 		write(2, "minishell: ", 11);
-		write(2, g_glob.file_name, 10);
+		write(2, file->file_name, ft_strlen(file->file_name));
 		write(2, ": ambiguous redirect\n", 21);
 		return (0);
 	}

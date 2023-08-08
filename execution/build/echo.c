@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   echo.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: selrhair <selrhair@student.42.fr>          +#+  +:+       +#+        */
+/*   By: yachaab <yachaab@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/23 22:49:47 by yachaab           #+#    #+#             */
-/*   Updated: 2023/08/05 19:00:50 by selrhair         ###   ########.fr       */
+/*   Updated: 2023/08/07 19:02:11 by yachaab          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,7 +41,6 @@ static void	print_result(char **cmd, int stat_of_first_arg)
 			c = '\0';
 		else
 			c = ' ';
-
 		printf("%s%c", *cmd, c);
 	}
 	else
@@ -50,9 +49,7 @@ static void	print_result(char **cmd, int stat_of_first_arg)
 			c = '\n';
 		else
 			c = ' ';
-		printf("%s%c", *cmd, c);
-		fprintf(stderr, ">>>>>>>>>>%d\n", g_glob.exit_status);
-	}
+		printf("%s%c", *cmd, c);	}
 }
 
 void	_echo(char **cmd)

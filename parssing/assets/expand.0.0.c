@@ -6,7 +6,7 @@
 /*   By: yachaab <yachaab@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/02 15:58:08 by yachaab           #+#    #+#             */
-/*   Updated: 2023/08/02 23:22:44 by yachaab          ###   ########.fr       */
+/*   Updated: 2023/08/07 16:15:57 by yachaab          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,8 +40,10 @@ static char	*create_buffer(char *c, char *s, char *d)
 	return (buffer);
 }
 
-static t_expand	init(t_expand expand)
+static t_expand	init()
 {
+	t_expand	expand;
+
 	expand.string = NULL;
 	expand.buffer = NULL;
 	expand.variable = NULL;
@@ -82,7 +84,7 @@ char	*expand(char *input, char **env)
 	char		*output;
 	t_expand	expand;
 
-	expand = init(expand);
+	expand = init();
 	output = startex(input, expand, env);
 	return (output);
 }

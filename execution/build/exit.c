@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   exit.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: selrhair <selrhair@student.42.fr>          +#+  +:+       +#+        */
+/*   By: yachaab <yachaab@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/23 22:55:29 by yachaab           #+#    #+#             */
-/*   Updated: 2023/08/07 15:03:02 by selrhair         ###   ########.fr       */
+/*   Updated: 2023/08/07 16:18:06 by yachaab          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,21 +45,22 @@ long	result(char *str, int singn, int i)
 long	ft_atoi(char *str)
 {
 	int		i;
-	int		singn;
+	int		sign;
 	long	y;
 
 	i = 0;
 	y = 0;
+	sign = 1;
 	while ((str[i] >= 9 && str[i] <= 13) || str[i] == 32)
 		i++;
 	if (str[i] == '-' || str[i] == '+')
 	{
 		if (str[i] == '-')
-			singn = -1;
+			sign = -1;
 		i++;
 	}
-	y = result(str, singn, i);
-	return (y * singn);
+	y = result(str, sign, i);
+	return (y * sign);
 }
 
 int	ft_just_number(char *str)

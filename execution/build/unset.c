@@ -6,7 +6,7 @@
 /*   By: yachaab <yachaab@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/23 22:52:22 by yachaab           #+#    #+#             */
-/*   Updated: 2023/08/03 17:46:43 by yachaab          ###   ########.fr       */
+/*   Updated: 2023/08/08 13:44:11 by yachaab          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,6 +29,8 @@ void	ft_detangle(int i, t_parser_var *var)
 	tmp = var->env->next;
 	var->env->next = var->env->next->next;
 	tmp->next = NULL;
+	free(tmp->content);
+	free(tmp);
 	var->env = save;
 }
 

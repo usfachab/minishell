@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   execution.0.0.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: selrhair <selrhair@student.42.fr>          +#+  +:+       +#+        */
+/*   By: yachaab <yachaab@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/11 16:19:06 by selrhair          #+#    #+#             */
-/*   Updated: 2023/08/07 15:16:04 by selrhair         ###   ########.fr       */
+/*   Updated: 2023/08/08 13:49:39 by yachaab          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,14 +66,9 @@ static int	run_built_in_parent(t_data *d, t_parser_var *v)
 		ft_unset(v);
 		return (0);
 	}
-	else if (!d->next && arg && !ft_strcmp(arg, "echo"))
+	else if (!d->next && arg && !ft_strcmp(arg, "echo") && d->out < 2)
 	{
-		if (d->out > 2)
-		{
-			dup2(d->out, 1);
-			close(d->out);
-		}
-		_echo(v->data->cmd_args);
+		_echo(d->cmd_args);
 		g_glob.exit_status = 0;
 		return (0);
 	}
@@ -94,19 +89,13 @@ static void	main_child_loop(t_parser_var *var, t_data *d, int *fd)
 			continue ;
 		}
 		if (!d->next && !run_built_in_parent(d, var))
-		{
-			// fprintf(stderr, "------------%p\n", d->next);
 			return ;
-		}
 		open_pipe(d, fd);
 		var->pid[i] = fork();
 		if (var->pid[i] < 0)
 			internal_error_msg("", errno);
-			// fprintf(stderr, ">>>>>>>>>>>>>%d\n", var->pid[i]);
 		if (!var->pid[i])
-		{
 			execute_in_child_proc(var, d, fd);
-		}
 		else
 			parent_closing_pipe_part(d, fd);
 		d = d->next;

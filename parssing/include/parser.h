@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parser.h                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: selrhair <selrhair@student.42.fr>          +#+  +:+       +#+        */
+/*   By: yachaab <yachaab@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/02 16:17:03 by yachaab           #+#    #+#             */
-/*   Updated: 2023/08/04 23:37:45 by selrhair         ###   ########.fr       */
+/*   Updated: 2023/08/08 13:04:43 by yachaab          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,6 @@ typedef struct s_glob
 	char	*pwd;
 	char	*pwd_helper;
 	char	*oldpwd;
-	char	*file_name;
 	int		interapt_main_signal;
 	int		exit_status;
 	int		ambiguous;

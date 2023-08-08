@@ -2,15 +2,15 @@ NAME		=	minishell
 
 CC			=	gcc
 
-#CFALGS		=	-Wall -Wextra -Werror -fsanitize=address -g3
+CFALGS		=	-Wall -Wextra -Werror #-fsanitize=address -g3
 
 NONE	= \033[0m
 YALLOW	= \033[1;93m
 Green	= \033[1;32m
 
-IDFLAG		=	-I/goinfre/selrhair/homebrew/opt/readline/include
+IDFLAG		=	-I/Users/yachaab/homebrew/opt/readline/include
 
-LDFLAG		=	-L/goinfre/selrhair/homebrew/opt/readline/lib -lreadline
+LDFLAG		=	-L/Users/yachaab/homebrew/opt/readline/lib -lreadline
 
 SRC_PAR		=	main.c main.0.1.c reset.c assets/lexer.c assets/parser.0.0.c assets/parser.0.1.c assets/syntax.0.0.c assets/syntax.0.1.c assets/syntax.0.2.c \
 				assets/expand.0.0.c assets/expand.0.1.c assets/expand.0.2.c assets/extra.c assets/token.c assets/removeQuote.c \
@@ -41,7 +41,7 @@ $(NAME) : $(OBJ_PAR) $(OBJ_EXE)
 	@$(CC) $(CFALGS) -c $< -o $@ $(IDFLAG)
 
 git :
-	make fclean && git add . && git commit -m "UPDATE: TESTING" && git push -f origin master
+	make fclean && git add . && git commit -m "UPDATE: LEAKS -> ambigouas" && git push -f origin master
 
 clean :
 	@echo "$(Green)Cleaning obj files....$(NONE)"

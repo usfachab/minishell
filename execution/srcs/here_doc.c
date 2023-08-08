@@ -6,7 +6,7 @@
 /*   By: yachaab <yachaab@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/21 15:59:08 by yachaab           #+#    #+#             */
-/*   Updated: 2023/08/03 15:36:44 by yachaab          ###   ########.fr       */
+/*   Updated: 2023/08/07 16:16:24 by yachaab          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,7 +33,7 @@ int	piping_forking_h(t_data *data, int *fd)
 	return (1);
 }
 
-void	m_l_h(t_file *file, char **env, char *str, char	*expanded)
+void	m_l_h(t_file *file, char *str, char	*expanded)
 {
 	if (!expanded)
 	{
@@ -60,7 +60,7 @@ void	main_loop(t_file *file, char **env, int fd)
 			expanded = expand(str, env);
 		else
 			expanded = str;
-		m_l_h(file, env, str, expanded);
+		m_l_h(file, str, expanded);
 		if (fd > 2)
 		{
 			write(fd, expanded, strlen(expanded));
