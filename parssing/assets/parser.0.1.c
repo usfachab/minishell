@@ -6,7 +6,7 @@
 /*   By: yachaab <yachaab@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/03 17:25:58 by yachaab           #+#    #+#             */
-/*   Updated: 2023/08/08 14:28:22 by yachaab          ###   ########.fr       */
+/*   Updated: 2023/08/08 15:08:47 by yachaab          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,7 +59,7 @@ void	save_file(t_parser_var	*var)
 
 void	save_heredoc(t_parser_var *var)
 {
-	if (var->token->e_type == 5 || var->token->e_type == 6)
+	if (var->token->e_type == 5)
 	{
 		if (ft_strchr(var->token->value, '\'')
 			|| ft_strchr(var->token->value, '\"'))

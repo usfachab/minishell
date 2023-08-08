@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   syntax.c                                           :+:      :+:    :+:   */
+/*   syntax.0.0.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: yachaab <yachaab@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/24 13:38:06 by yachaab           #+#    #+#             */
-/*   Updated: 2023/08/02 16:28:55 by yachaab          ###   ########.fr       */
+/*   Updated: 2023/08/08 15:04:39 by yachaab          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -78,5 +78,6 @@ void	*syntax_err(char *input)
 		return (NULL);
 	if (!white_space_only(input))
 		return (NULL);
+	find_unprintable_and_replace_with_char(input);
 	return ("OK");
 }

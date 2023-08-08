@@ -6,7 +6,7 @@
 /*   By: yachaab <yachaab@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/15 23:02:59 by yachaab           #+#    #+#             */
-/*   Updated: 2023/08/02 16:18:47 by yachaab          ###   ########.fr       */
+/*   Updated: 2023/08/08 15:53:56 by yachaab          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,18 +26,16 @@ char	which_white_space(char ch)
 
 void	find_char_and_replace_with_unprintable(char *str)
 {
-	int	double_quote;
-	int	single_quote;
+	char	c;
 
-	double_quote = 0;
-	single_quote = 0;
+	c = 0;
 	while (str && *str)
 	{
-		if (*str == '"')
-			double_quote = !double_quote;
-		if (*str == '\'')
-			single_quote = !single_quote;
-		if ((*str != '"' || *str != '\'') && (double_quote || single_quote))
+		if ((*str == '\'' || *str == '\"') && c == 0)
+			c = *str;
+		else if (*str == c)
+			c = 0;
+		else if (c != 0)
 		{
 			if (*str == '|')
 				*str = -1;

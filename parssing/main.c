@@ -6,7 +6,7 @@
 /*   By: yachaab <yachaab@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/15 21:26:45 by yachaab           #+#    #+#             */
-/*   Updated: 2023/08/08 14:21:26 by yachaab          ###   ########.fr       */
+/*   Updated: 2023/08/08 15:52:42 by yachaab          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,8 +54,8 @@ void	the_main_loop(t_parser_var *var, char *input)
 			exit(0);
 		if (*input && syntax_err(input))
 		{
-			var = parser(input, var);
 			add_history(input);
+			var = parser(input, var);
 			execution(var);
 			reset(var);
 		}
