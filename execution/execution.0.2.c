@@ -6,7 +6,7 @@
 /*   By: yachaab <yachaab@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/02 17:08:57 by yachaab           #+#    #+#             */
-/*   Updated: 2023/08/08 14:02:31 by yachaab          ###   ########.fr       */
+/*   Updated: 2023/08/08 17:29:51 by yachaab          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,28 +35,48 @@ void	wait__signal(t_parser_var *var, int stat)
 	i = 0;
 	while (i < var->list_size && var->pid[i] != 0)
 	{
-		waitpid(var->pid[i], &stat, WUNTRACED);
+		waitpid(var->pid[i], &stat, 0);
 		if (stat == 0)
 			g_glob.exit_status = 0;
-		if (WEXITSTATUS(stat))
+		if (WIFSIGNALED(stat))
 		{
 			if (WTERMSIG(stat) == 2)
-			{
-				var->flag = -12;
 				g_glob.exit_status = 130;
-			}
 			if (WTERMSIG(stat) == 3)
-			{
-				var->flag = -13;
 				g_glob.exit_status = 131;
-			}
-			else
-				g_glob.exit_status = WEXITSTATUS(stat);
 		}
+		else
+			g_glob.exit_status = WEXITSTATUS(stat);
 		i++;
 	}
 }
+// void    wait__signal(t_parser_var *var, int stat)
+// {
+//     int    i;
 
+//     i = 0;
+//     while (i < var->list_size && var->pid[i] != 0)
+//     {
+//         waitpid(var->pid[i], &stat, WUNTRACED);
+//         if (stat == 0)
+//             g_glob.exit_status = 0;
+//         if (WEXITSTATUS(stat))
+//         {
+//             g_glob.exit_status = WEXITSTATUS(stat);
+//         }
+//         else if (stat == 2)
+//         {
+//             var->flag = -12;
+//             g_glob.exit_status = 130;
+//         }
+//         else if (stat == 3)
+//         {
+//             var->flag = -13;
+//             g_glob.exit_status = 131;
+//         }
+//         i++;
+//     }
+// }
 void	execute(t_parser_var *var, t_data *data, int *fd)
 {
 	int		i;

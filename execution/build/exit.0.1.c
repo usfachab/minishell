@@ -6,7 +6,7 @@
 /*   By: yachaab <yachaab@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/08 14:03:49 by yachaab           #+#    #+#             */
-/*   Updated: 2023/08/08 14:19:02 by yachaab          ###   ########.fr       */
+/*   Updated: 2023/08/08 16:59:44 by yachaab          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,6 @@ static long	result(char *str, int singn, int i)
 		y = y * 10 + str[i] - 48;
 		if (k > y)
 		k = y;
-		ft_print_exit_err();
 		if (y > LONG_MAX && singn == -1)
 			return (0);
 		else if (y > LONG_MAX && singn == 1)
