@@ -6,7 +6,7 @@
 /*   By: yachaab <yachaab@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/03 22:33:07 by yachaab           #+#    #+#             */
-/*   Updated: 2023/08/08 15:53:00 by yachaab          ###   ########.fr       */
+/*   Updated: 2023/08/08 15:57:25 by yachaab          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,6 +19,8 @@ void	restofrest(t_parser_var *var)
 	free(var->lexer);
 	free(var->token);
 	free(var->data);
+	if (var->pid)
+		free(var->pid);
 }
 
 void	reset(t_parser_var *var)

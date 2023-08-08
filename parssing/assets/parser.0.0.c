@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   parser.c                                           :+:      :+:    :+:   */
+/*   parser.0.0.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: yachaab <yachaab@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/17 00:48:06 by yachaab           #+#    #+#             */
-/*   Updated: 2023/08/02 18:47:07 by yachaab          ###   ########.fr       */
+/*   Updated: 2023/08/08 15:58:34 by yachaab          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,7 @@
 
 static t_parser_var	*init_var(char *input, t_parser_var	*var)
 {
+	var->pid = NULL;
 	var->data = NULL;
 	var->lexer = init_lexer(input);
 	var->token = lexer_get_next_token(var->lexer);
