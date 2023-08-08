@@ -4,9 +4,10 @@ CC			=	gcc
 
 CFALGS		=	-Wall -Wextra -Werror #-fsanitize=address -g3
 
-NONE	= \033[0m
-YALLOW	= \033[1;93m
-Green	= \033[1;32m
+NONE		=	\033[0m
+YALLOW		=	\033[1;93m
+Green		=	\033[1;32m
+Red			=	\033[0;31m
 
 IDFLAG		=	-I/Users/yachaab/homebrew/opt/readline/include
 
@@ -33,22 +34,21 @@ OBJ_EXE		=	$(PRE_EXE:.c=.o)
 all : $(NAME)
 
 $(NAME) : $(OBJ_PAR) $(OBJ_EXE)
-	@echo  "$(YALLOW)\n[$@]$(NONE)"
+	@echo  "$(Green)Compiled success$(NONE)"
 	@$(CC) $(CFALGS) $(IDFLAG) $(LDFLAG) -o $@ $^
 
 %.o : %.c
-	@echo "$(Green)Compaling file $<$(NONE)"
 	@$(CC) $(CFALGS) -c $< -o $@ $(IDFLAG)
 
 git :
 	make fclean && git add . && git commit -m "UPDATE: LEAKS AMBIG -> OK | NORM -> OK | NEW_REPO -> minishell | EXIT -> NOK" && git push -f origin master
 
 clean :
-	@echo "$(Green)Cleaning obj files....$(NONE)"
+	@echo "$(YALLOW)Cleaning$(NONE)"
 	@rm -fr $(OBJ_PAR) $(OBJ_EXE)
 
 fclean : clean
-	@echo "$(Green)Clean all ....$(NONE)"
+	@echo "$(Red)Fcleaning$(NONE)"
 	@rm -fr $(OBJ_PAR) $(OBJ_EXE) $(NAME)
 
 re : fclean all
