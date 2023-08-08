@@ -6,7 +6,7 @@
 /*   By: yachaab <yachaab@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/15 21:26:45 by yachaab           #+#    #+#             */
-/*   Updated: 2023/08/08 14:01:27 by yachaab          ###   ########.fr       */
+/*   Updated: 2023/08/08 14:21:26 by yachaab          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,10 +52,10 @@ void	the_main_loop(t_parser_var *var, char *input)
 		input = readline("minishell -> ");
 		if (!input)
 			exit(0);
-		add_history(input);
 		if (*input && syntax_err(input))
 		{
 			var = parser(input, var);
+			add_history(input);
 			execution(var);
 			reset(var);
 		}
