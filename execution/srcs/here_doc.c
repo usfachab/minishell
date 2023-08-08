@@ -6,32 +6,11 @@
 /*   By: yachaab <yachaab@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/21 15:59:08 by yachaab           #+#    #+#             */
-/*   Updated: 2023/08/07 16:16:24 by yachaab          ###   ########.fr       */
+/*   Updated: 2023/08/08 18:45:53 by yachaab          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../libs/minishell.h"
-
-int	piping_forking_h(t_data *data, int *fd)
-{
-	int	stat;
-
-	close(fd[1]);
-	data->last_hdc = fd[0];
-	while (wait(&stat) > 0)
-		;
-	if (WIFSIGNALED(stat))
-	{
-		if (WTERMSIG(stat) == 2)
-		{
-			if (fd[0] != 0)
-				close(fd[0]);
-			free(fd);
-			return (0);
-		}
-	}
-	return (1);
-}
 
 void	m_l_h(t_file *file, char *str, char	*expanded)
 {
@@ -72,12 +51,32 @@ void	main_loop(t_file *file, char **env, int fd)
 	}
 }
 
+int	piping_forking_h(t_data *data, int *fd)
+{
+	int	stat;
+
+	stat = 0;
+	close(fd[1]);
+	data->last_hdc = fd[0];
+	while (wait(&stat) > 0)
+		;
+	if (WIFSIGNALED(stat))
+	{
+		if (WTERMSIG(stat) == 2)
+		{
+			if (fd[0] != 0)
+				close(fd[0]);
+			return (0);
+		}
+	}
+	return (1);
+}
+
 int	piping_forking(t_data *data, t_file *file, char **env)
 {
 	int	pid;
-	int	*fd;
+	int	fd[2];
 
-	fd = malloc(sizeof(int) * 2);
 	g_glob.interapt_main_signal = -99;
 	if (data->last_in && data->last_in == file)
 		pipe(fd);
@@ -90,14 +89,12 @@ int	piping_forking(t_data *data, t_file *file, char **env)
 	{
 		signal(SIGINT, SIG_DFL);
 		main_loop(file, env, fd[1]);
-		close(fd[1]);
 	}
 	else
 	{
 		if (!piping_forking_h(data, fd))
 			return (0);
 	}
-	free(fd);
 	return (1);
 }
 

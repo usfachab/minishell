@@ -6,7 +6,7 @@
 /*   By: yachaab <yachaab@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/11 16:19:06 by selrhair          #+#    #+#             */
-/*   Updated: 2023/08/08 16:43:02 by yachaab          ###   ########.fr       */
+/*   Updated: 2023/08/08 18:59:22 by yachaab          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,18 @@ static void	execute_in_child_proc(t_parser_var *var, t_data *data, int *fd)
 {
 	signal(SIGINT, SIG_DFL);
 	signal(SIGQUIT, SIG_DFL);
+	if (var->flag == -12)
+	{
+		g_glob.exit_status = 130;
+		exit(g_glob.exit_status);
+	}
+	if (var->flag == -13)
+	{
+		g_glob.exit_status = 131;
+		exit(g_glob.exit_status);
+	}
 	execute(var, data, fd);
+	exit(0);
 }
 
 static void	open_pipe(t_data *data, int *fd)

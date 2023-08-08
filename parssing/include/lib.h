@@ -31,12 +31,9 @@
 /* ----------------------------- parser  --------------------------------*/
 t_parser_var	*parser(char *input, t_parser_var	*var);
 /* ----------------------------- parserExtra  ---------------------------*/
-int				variable_contain_42(char *value);
-void			variable_reverce_42(char *value);
 char			*skip_white_space(char *input);
 void			save_file(t_parser_var	*var);
 void			save_heredoc(t_parser_var *var);
-void			expand_in_save_file(t_parser_var *var);
 /* ----------------------------- src folder -----------------------------*/
 void			find_char_and_replace_with_unprintable(char *str);
 void			find_unprintable_and_replace_with_char(char *str);
