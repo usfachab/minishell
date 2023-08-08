@@ -41,7 +41,7 @@ $(NAME) : $(OBJ_PAR) $(OBJ_EXE)
 	@$(CC) $(CFALGS) -c $< -o $@ $(IDFLAG)
 
 git :
-	make fclean && git add . && git commit -m "UPDATE: LEAKS AMBIG -> OK | NORM -> OK" && git push -f origin master
+	make fclean && git add . && git commit -m "UPDATE: LEAKS AMBIG -> OK | NORM -> OK | NEW_REPO -> minishell" && git push -f origin master
 
 clean :
 	@echo "$(Green)Cleaning obj files....$(NONE)"
