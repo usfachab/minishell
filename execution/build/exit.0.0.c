@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   exit.c                                             :+:      :+:    :+:   */
+/*   exit.0.0.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: yachaab <yachaab@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/23 22:55:29 by yachaab           #+#    #+#             */
-/*   Updated: 2023/08/07 16:18:06 by yachaab          ###   ########.fr       */
+/*   Updated: 2023/08/08 14:04:08 by yachaab          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,27 +40,6 @@ long	result(char *str, int singn, int i)
 		i++;
 	}
 	return (y);
-}
-
-long	ft_atoi(char *str)
-{
-	int		i;
-	int		sign;
-	long	y;
-
-	i = 0;
-	y = 0;
-	sign = 1;
-	while ((str[i] >= 9 && str[i] <= 13) || str[i] == 32)
-		i++;
-	if (str[i] == '-' || str[i] == '+')
-	{
-		if (str[i] == '-')
-			sign = -1;
-		i++;
-	}
-	y = result(str, sign, i);
-	return (y * sign);
 }
 
 int	ft_just_number(char *str)

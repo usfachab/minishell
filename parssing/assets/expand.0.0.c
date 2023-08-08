@@ -6,7 +6,7 @@
 /*   By: yachaab <yachaab@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/02 15:58:08 by yachaab           #+#    #+#             */
-/*   Updated: 2023/08/07 16:15:57 by yachaab          ###   ########.fr       */
+/*   Updated: 2023/08/08 14:06:03 by yachaab          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,7 +40,7 @@ static char	*create_buffer(char *c, char *s, char *d)
 	return (buffer);
 }
 
-static t_expand	init()
+static t_expand	init(void)
 {
 	t_expand	expand;
 

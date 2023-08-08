@@ -6,7 +6,7 @@
 /*   By: yachaab <yachaab@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/23 22:49:47 by yachaab           #+#    #+#             */
-/*   Updated: 2023/08/07 19:02:11 by yachaab          ###   ########.fr       */
+/*   Updated: 2023/08/08 14:02:58 by yachaab          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,7 +49,8 @@ static void	print_result(char **cmd, int stat_of_first_arg)
 			c = '\n';
 		else
 			c = ' ';
-		printf("%s%c", *cmd, c);	}
+		printf("%s%c", *cmd, c);
+	}
 }
 
 void	_echo(char **cmd)

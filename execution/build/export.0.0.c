@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   export.0.0.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: selrhair <selrhair@student.42.fr>          +#+  +:+       +#+        */
+/*   By: yachaab <yachaab@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/23 22:53:17 by yachaab           #+#    #+#             */
-/*   Updated: 2023/08/05 18:20:22 by selrhair         ###   ########.fr       */
+/*   Updated: 2023/08/08 14:05:34 by yachaab          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,7 +51,6 @@ static void	add_arg_to_env_list(char **cmd, t_list *env, t_parser_var *var)
 		}
 		else
 			printf("export: `%s': not a valid identifier\n", *cmd);
-			
 		cmd++;
 	}
 }
@@ -92,7 +91,6 @@ void	_export(t_parser_var *var)
 
 	env = var->env;
 	cmd = var->data->cmd_args;
-		// printf(">>>>>>>>>>>\n");
 	if (!(*(cmd + 1)))
 		show_exported_variables(env);
 	else

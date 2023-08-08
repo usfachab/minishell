@@ -6,7 +6,7 @@
 /*   By: yachaab <yachaab@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/02 17:08:57 by yachaab           #+#    #+#             */
-/*   Updated: 2023/08/07 17:35:52 by yachaab          ###   ########.fr       */
+/*   Updated: 2023/08/08 14:02:31 by yachaab          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,11 +35,9 @@ void	wait__signal(t_parser_var *var, int stat)
 	i = 0;
 	while (i < var->list_size && var->pid[i] != 0)
 	{
-		waitpid(var->pid[i],  &stat, WUNTRACED);
+		waitpid(var->pid[i], &stat, WUNTRACED);
 		if (stat == 0)
-		{
 			g_glob.exit_status = 0;
-		}
 		if (WEXITSTATUS(stat))
 		{
 			if (WTERMSIG(stat) == 2)
@@ -53,9 +51,7 @@ void	wait__signal(t_parser_var *var, int stat)
 				g_glob.exit_status = 131;
 			}
 			else
-			{	
 				g_glob.exit_status = WEXITSTATUS(stat);
-			}
 		}
 		i++;
 	}
