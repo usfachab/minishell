@@ -6,7 +6,7 @@
 /*   By: yachaab <yachaab@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/23 22:55:29 by yachaab           #+#    #+#             */
-/*   Updated: 2023/08/08 14:04:08 by yachaab          ###   ########.fr       */
+/*   Updated: 2023/08/08 14:18:48 by yachaab          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,28 +18,6 @@ void	ft_print_exit_err(void)
 	write (2, "exit: numeric argument required\n", 32);
 	g_glob.exit_status = 255;
 	exit(255);
-}
-
-long	result(char *str, int singn, int i)
-{
-	long	y;
-	long	k;
-
-	y = 0;
-	k = 0;
-	while (str[i] >= '0' && str[i] <= '9')
-	{
-		y = y * 10 + str[i] - 48;
-		if (k > y)
-		k = y;
-		ft_print_exit_err();
-		if (y > LONG_MAX && singn == -1)
-			return (0);
-		else if (y > LONG_MAX && singn == 1)
-			return (-1);
-		i++;
-	}
-	return (y);
 }
 
 int	ft_just_number(char *str)
