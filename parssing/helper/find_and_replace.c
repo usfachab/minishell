@@ -6,7 +6,7 @@
 /*   By: yachaab <yachaab@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/15 23:02:59 by yachaab           #+#    #+#             */
-/*   Updated: 2023/08/08 15:53:56 by yachaab          ###   ########.fr       */
+/*   Updated: 2023/08/09 22:12:42 by yachaab          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@ char	which_white_space(char ch)
 	char	*special_char;
 
 	special_char = " \t\n\f\v\r";
-	found_char = strchr(special_char, ch);
+	found_char = ft_strchr(special_char, ch);
 	if (found_char)
 		return (*found_char);
 	return (0);
