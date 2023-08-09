@@ -9,9 +9,9 @@ YALLOW		=	\033[1;93m
 Green		=	\033[1;32m
 Red			=	\033[0;31m
 
-IDFLAG		=	-I/Users/yachaab/homebrew/opt/readline/include
+IDFLAG		=	-I/goinfre/selrhair/homebrew/opt/readline/include
 
-LDFLAG		=	-L/Users/yachaab/homebrew/opt/readline/lib -lreadline
+LDFLAG		=	-L/goinfre/selrhair/homebrew/opt/readline/lib -lreadline
 
 SRC_PAR		=	main.c main.0.1.c reset.c assets/lexer.c assets/parser.0.0.c assets/parser.0.1.c assets/syntax.0.0.c assets/syntax.0.1.c assets/syntax.0.2.c \
 				assets/expand.0.0.c assets/expand.0.1.c assets/expand.0.2.c assets/extra.c assets/token.c assets/removeQuote.c \
