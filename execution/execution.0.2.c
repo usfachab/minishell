@@ -3,14 +3,21 @@
 /*                                                        :::      ::::::::   */
 /*   execution.0.2.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: yachaab <yachaab@student.42.fr>            +#+  +:+       +#+        */
+/*   By: selrhair <selrhair@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/02 17:08:57 by yachaab           #+#    #+#             */
-/*   Updated: 2023/08/09 15:33:34 by yachaab          ###   ########.fr       */
+/*   Updated: 2023/08/09 18:17:20 by selrhair         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libs/minishell.h"
+
+void	ft_tmp(char *cmd)
+{
+	write(2, "minishell: ", 11);
+	write(2, cmd, ft_strlen(cmd));
+	write(2, ": command not found\n", 20);
+}
 
 int	count_data(t_parser_var *var)
 {
@@ -33,7 +40,7 @@ void	wait__signal(t_parser_var *var, int stat)
 	int	i;
 
 	i = 0;
-	while (i < var->list_size)
+	while (i < var->list_size && var->pid[i] != 0)
 	{
 		waitpid(var->pid[i], &stat, WUNTRACED);
 		if (stat == 0)
@@ -67,7 +74,7 @@ void	execute(t_parser_var *var, t_data *data, int *fd)
 	str = NULL;
 	_dupping(data, fd);
 	if (!run_builtin(data, var))
-		return ;
+		exit(g_glob.exit_status);
 	if (data->cmd_args[0])
 	{
 		str = ft_strrchr(data->cmd_args[0], '/');

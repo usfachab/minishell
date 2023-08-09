@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   execution.0.0.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: yachaab <yachaab@student.42.fr>            +#+  +:+       +#+        */
+/*   By: selrhair <selrhair@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/11 16:19:06 by selrhair          #+#    #+#             */
-/*   Updated: 2023/08/09 15:38:48 by yachaab          ###   ########.fr       */
+/*   Updated: 2023/08/09 18:23:19 by selrhair         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,9 +51,9 @@ static int	run_built_in_parent(t_data *d, t_parser_var *v)
 	char	*arg;
 
 	arg = d->cmd_args[0];
-	if (!d->next && arg && !ft_strcmp(arg, "cd"))
+	if (v->list_size == 1 && arg && !ft_strcmp(arg, "cd"))
 	{
-		ft_cd(v);
+		ft_cd(v, d);
 		return (0);
 	}
 	else if (!d->next && arg && !ft_strcmp(arg, "export"))
@@ -75,32 +75,42 @@ static int	run_built_in_parent(t_data *d, t_parser_var *v)
 	return (1);
 }
 
+void	ft_main_help(t_parser_var *var, t_data *d, int *fd, int i)
+{
+	if (var->pid[i] < 0)
+		internal_error_msg("", errno);
+	if (!var->pid[i])
+		execute_in_child_proc(var, d, fd);
+	else
+		parent_closing_pipe_part(d, fd);
+}
+
 static int	main_child_loop(t_parser_var *var, t_data *d, int *fd)
 {
 	int	i;
+	int	j;
 
 	i = 0;
 	var->pid = malloc(sizeof(pid_t) * (count_data(var) + 1));
 	while (d)
 	{
-		if (!open_file_loop(d))
+		j = open_file_loop(d);
+		if (!j)
 		{
 			d = d->next;
 			continue ;
 		}
+		if (j == -1)
+			return (1);
 		if (!d->next && !run_built_in_parent(d, var))
-			return ;
+			return (0);
 		open_pipe(d, fd);
 		var->pid[i] = fork();
-		if (var->pid[i] < 0)
-			internal_error_msg("", errno);
-		if (!var->pid[i])
-			execute_in_child_proc(var, d, fd);
-		else
-			parent_closing_pipe_part(d, fd);
+		ft_main_help(var, d, fd, i);
 		d = d->next;
 		i++;
 	}
+	return (0);
 }
 
 void	execution(t_parser_var *var)
@@ -122,7 +132,8 @@ void	execution(t_parser_var *var)
 			ft_exit(d);
 			return ;
 		}
-		main_child_loop(var, d, fd);
+		if (main_child_loop(var, d, fd))
+			return ;
 		wait__signal(var, stat);
 	}
 }

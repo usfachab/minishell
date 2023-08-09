@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   run_builtin.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: yachaab <yachaab@student.42.fr>            +#+  +:+       +#+        */
+/*   By: selrhair <selrhair@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/27 15:07:07 by yachaab           #+#    #+#             */
-/*   Updated: 2023/08/09 13:25:00 by yachaab          ###   ########.fr       */
+/*   Updated: 2023/08/09 18:12:43 by selrhair         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@ static void	which_builtin(t_parser_var *var, int index, t_data *data)
 	if (index == 0)
 		_pwd(var->env);
 	else if (index == 1)
-		ft_cd(var);
+		ft_cd(var, data);
 	else if (index == 2)
 	{
 		_echo(data->cmd_args);
