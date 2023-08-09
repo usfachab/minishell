@@ -6,7 +6,7 @@
 /*   By: yachaab <yachaab@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/23 22:57:18 by yachaab           #+#    #+#             */
-/*   Updated: 2023/08/09 12:59:41 by yachaab          ###   ########.fr       */
+/*   Updated: 2023/08/09 21:55:00 by yachaab          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,16 +36,19 @@ int	alphanumunder(char *cmd)
 
 t_list	*check_for_variable_existance(char *var_name, t_list *env)
 {
-	while (env)
+	t_list	*tenv;
+
+	tenv = env;
+	while (tenv)
 	{
-		if (!ft_strchr(env->content, '='))
+		if (!ft_strchr(tenv->content, '='))
 		{
-			if (!ft_strncmp(var_name, env->content, strlen(var_name) - 1))
-				return (env);
+			if (!ft_strncmp(var_name, tenv->content, strlen(var_name) - 1))
+				return (tenv);
 		}
-		else if (!ft_strncmp(var_name, env->content, strlen(var_name)))
-			return (env);
-		env = env->next;
+		else if (!ft_strncmp(var_name, tenv->content, strlen(var_name)))
+			return (tenv);
+		tenv = tenv->next;
 	}
 	return (NULL);
 }

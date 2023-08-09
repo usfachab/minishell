@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   export_help.c                                      :+:      :+:    :+:   */
+/*   export.0.1.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: yachaab <yachaab@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/01 16:55:49 by selrhair          #+#    #+#             */
-/*   Updated: 2023/08/02 17:15:03 by yachaab          ###   ########.fr       */
+/*   Updated: 2023/08/09 22:04:18 by yachaab          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,11 +22,16 @@ void	ft_help_1(char *arg, t_list *env, t_parser_var *var)
 	if (var->altered_node)
 	{
 		var->last_saved = ft_strchr(var->altered_node->content, '=');
-		var->tmp = ft_strjoin(var->last_saved, var->last);
-		free(var->altered_node->content);
-		var->altered_node->content = ft_strjoin(var->first, var->tmp);
-		free(var->first);
-		free(var->tmp);
+		if (var->last_saved)
+		{
+			var->tmp = ft_strjoin(var->last_saved, var->last);
+			free(var->altered_node->content);
+			var->altered_node->content = ft_strjoin(var->first, var->tmp);
+			free(var->first);
+			free(var->tmp);
+		}
+		else
+			var->altered_node->content = ft_strjoin(var->altered_node->content, ft_strchr(arg, '='));
 	}
 	else
 	{
