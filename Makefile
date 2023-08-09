@@ -2,7 +2,7 @@ NAME		=	minishell
 
 CC			=	gcc
 
-CFALGS		=	-Wall -Wextra -Werror #-fsanitize=address -g3
+CFALGS		=	-Wall -Wextra -Werror
 
 NONE		=	\033[0m
 YALLOW		=	\033[1;93m
@@ -39,9 +39,6 @@ $(NAME) : $(OBJ_PAR) $(OBJ_EXE)
 
 %.o : %.c
 	@$(CC) $(CFALGS) -c $< -o $@ $(IDFLAG)
-
-git :
-	make fclean && git add . && git commit -m "FINAL VERSION" && git push -f origin master
 
 clean :
 	@echo "$(YALLOW)Cleaning$(NONE)"
