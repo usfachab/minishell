@@ -6,7 +6,7 @@
 /*   By: yachaab <yachaab@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/23 22:53:17 by yachaab           #+#    #+#             */
-/*   Updated: 2023/08/09 21:48:54 by yachaab          ###   ########.fr       */
+/*   Updated: 2023/08/09 22:10:04 by yachaab          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,7 +46,12 @@ static void	add_arg_to_env_list(char **cmd, t_list *env, t_parser_var *var)
 		if (check_if_variable_is_valid(*cmd))
 			make_arg_a_env_variable(*cmd, env, var);
 		else
-			printf("export: `%s': not a valid identifier\n", *cmd);
+		{
+			write(2, "export: `", 9);
+			write(2, *cmd, ft_strlen(*cmd));
+			write(2, "': not a valid identifier\n", 26);
+			g_glob.exit_status = 1;
+		}
 		cmd++;
 	}
 }
