@@ -6,7 +6,7 @@
 /*   By: yachaab <yachaab@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/18 16:54:44 by selrhair          #+#    #+#             */
-/*   Updated: 2023/08/08 14:19:31 by yachaab          ###   ########.fr       */
+/*   Updated: 2023/08/09 13:19:06 by yachaab          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,7 @@ void	_pwd(t_list *env);
 void	_echo(char **cmd);
 void	ft_unset(t_parser_var *var);
 int		ft_cd(t_parser_var *var);
-int		ft_exit(t_data *data, t_parser_var *var);
+int		ft_exit(t_data *data);
 bool	heredoc(t_parser_var *var);
 int		open_file_loop(t_data *data);
 void	save_last_in_out(t_parser_var *var);

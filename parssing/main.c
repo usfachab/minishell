@@ -6,7 +6,7 @@
 /*   By: yachaab <yachaab@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/15 21:26:45 by yachaab           #+#    #+#             */
-/*   Updated: 2023/08/08 18:47:04 by yachaab          ###   ########.fr       */
+/*   Updated: 2023/08/09 11:47:48 by yachaab          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,6 +56,23 @@ void	the_main_loop(t_parser_var *var, char *input)
 		{
 			add_history(input);
 			var = parser(input, var);
+			// while (var && var->data)
+			// {
+			// 	int i = 0;
+			// 	while (var->data->cmd_args && var->data->cmd_args[i])
+			// 	{
+			// 		printf("command and args:%s\n", var->data->cmd_args[i]);
+			// 		i++;
+			// 	}
+			// 	while (var->data && var->data->file)
+			// 	{
+			// 		printf("file_name: %s | file_type: %d\n",
+			// 		var->data->file->file_name, var->data->file->type);
+			// 		var->data->file = var->data->file->next;
+			// 	}
+			// 	printf("------------ next command ----------\n");
+			// 	var->data = var->data->next;
+			// }
 			execution(var);
 			reset(var);
 		}

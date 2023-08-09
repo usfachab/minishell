@@ -6,30 +6,11 @@
 /*   By: yachaab <yachaab@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/23 22:49:47 by yachaab           #+#    #+#             */
-/*   Updated: 2023/08/08 14:02:58 by yachaab          ###   ########.fr       */
+/*   Updated: 2023/08/09 11:50:03 by yachaab          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../libs/minishell.h"
-
-static int	check_the_first_argument(char *arg)
-{
-	if (arg[0] == '-')
-	{
-		arg = arg + 1;
-		if (!(*arg))
-			return (1);
-	}
-	else
-		return (1);
-	while (arg && *arg)
-	{
-		if (*arg != 'n')
-			return (1);
-		arg++;
-	}
-	return (0);
-}
 
 static void	print_result(char **cmd, int stat_of_first_arg)
 {
@@ -51,6 +32,25 @@ static void	print_result(char **cmd, int stat_of_first_arg)
 			c = ' ';
 		printf("%s%c", *cmd, c);
 	}
+}
+
+static int	check_the_first_argument(char *arg)
+{
+	if (arg[0] == '-')
+	{
+		arg = arg + 1;
+		if (!(*arg))
+			return (1);
+	}
+	else
+		return (1);
+	while (arg && *arg)
+	{
+		if (*arg != 'n')
+			return (1);
+		arg++;
+	}
+	return (0);
 }
 
 void	_echo(char **cmd)

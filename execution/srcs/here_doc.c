@@ -6,7 +6,7 @@
 /*   By: yachaab <yachaab@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/21 15:59:08 by yachaab           #+#    #+#             */
-/*   Updated: 2023/08/08 18:45:53 by yachaab          ###   ########.fr       */
+/*   Updated: 2023/08/09 13:14:41 by yachaab          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,7 +56,6 @@ int	piping_forking_h(t_data *data, int *fd)
 	int	stat;
 
 	stat = 0;
-	close(fd[1]);
 	data->last_hdc = fd[0];
 	while (wait(&stat) > 0)
 		;
@@ -89,9 +88,11 @@ int	piping_forking(t_data *data, t_file *file, char **env)
 	{
 		signal(SIGINT, SIG_DFL);
 		main_loop(file, env, fd[1]);
+		close(fd[1]);
 	}
 	else
 	{
+		close(fd[1]);
 		if (!piping_forking_h(data, fd))
 			return (0);
 	}

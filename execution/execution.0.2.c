@@ -6,7 +6,7 @@
 /*   By: yachaab <yachaab@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/02 17:08:57 by yachaab           #+#    #+#             */
-/*   Updated: 2023/08/08 19:02:48 by yachaab          ###   ########.fr       */
+/*   Updated: 2023/08/09 13:37:37 by yachaab          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,7 +52,7 @@ void	wait__signal(t_parser_var *var, int stat)
 			}
 		}
 		else
-			g_glob.exit_status = stat;
+			g_glob.exit_status = WEXITSTATUS(stat);
 		i++;
 	}
 }

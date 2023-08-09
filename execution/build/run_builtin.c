@@ -6,7 +6,7 @@
 /*   By: yachaab <yachaab@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/27 15:07:07 by yachaab           #+#    #+#             */
-/*   Updated: 2023/08/08 12:00:44 by yachaab          ###   ########.fr       */
+/*   Updated: 2023/08/09 13:25:00 by yachaab          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,7 @@ static void	which_builtin(t_parser_var *var, int index, t_data *data)
 	else if (index == 5)
 		ft_unset(var);
 	else if (index == 6)
-		ft_exit(var->data, var);
+		ft_exit(data);
 }
 
 int	run_builtin(t_data *data, t_parser_var *var)
@@ -49,7 +49,7 @@ int	run_builtin(t_data *data, t_parser_var *var)
 	i = 0;
 	while (data->cmd_args && data->cmd_args[0] && cmds[i])
 	{
-		if (!strcmp(data->cmd_args[0], cmds[i]))
+		if (!ft_strncmp(data->cmd_args[0], cmds[i], ft_strlen(cmds[i])))
 		{
 			which_builtin(var, i, data);
 			return (0);

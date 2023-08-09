@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   export.0.2.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: selrhair <selrhair@student.42.fr>          +#+  +:+       +#+        */
+/*   By: yachaab <yachaab@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/23 22:57:18 by yachaab           #+#    #+#             */
-/*   Updated: 2023/08/05 18:14:08 by selrhair         ###   ########.fr       */
+/*   Updated: 2023/08/09 12:59:41 by yachaab          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,7 +38,12 @@ t_list	*check_for_variable_existance(char *var_name, t_list *env)
 {
 	while (env)
 	{
-		if (!ft_strncmp(var_name, env->content, strlen(var_name)))
+		if (!ft_strchr(env->content, '='))
+		{
+			if (!ft_strncmp(var_name, env->content, strlen(var_name) - 1))
+				return (env);
+		}
+		else if (!ft_strncmp(var_name, env->content, strlen(var_name)))
 			return (env);
 		env = env->next;
 	}

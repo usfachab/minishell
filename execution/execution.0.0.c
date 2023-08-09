@@ -6,7 +6,7 @@
 /*   By: yachaab <yachaab@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/11 16:19:06 by selrhair          #+#    #+#             */
-/*   Updated: 2023/08/08 18:59:22 by yachaab          ###   ########.fr       */
+/*   Updated: 2023/08/09 13:20:41 by yachaab          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -119,7 +119,7 @@ void	execution(t_parser_var *var)
 		d->in = 0;
 		if (!d->next && d->cmd_args[0] && !ft_strcmp(d->cmd_args[0], "exit"))
 		{
-			ft_exit(d, var);
+			ft_exit(d);
 			return ;
 		}
 		main_child_loop(var, d, fd);
