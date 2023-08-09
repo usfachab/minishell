@@ -6,7 +6,7 @@
 /*   By: yachaab <yachaab@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/02 17:08:57 by yachaab           #+#    #+#             */
-/*   Updated: 2023/08/09 13:37:37 by yachaab          ###   ########.fr       */
+/*   Updated: 2023/08/09 15:33:34 by yachaab          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -75,4 +75,13 @@ void	execute(t_parser_var *var, t_data *data, int *fd)
 		execve(path, data->cmd_args, var->envp);
 		internal_error_msg("minishell: ", errno);
 	}
+}
+
+void	print_exit(char *cmd)
+{
+	write(2, "minishell: ", 11);
+	write(2, cmd, ft_strlen(cmd));
+	write(2, ": No such file or directory\n", 28);
+	g_glob.exit_status = 127;
+	exit(g_glob.exit_status);
 }

@@ -6,7 +6,7 @@
 /*   By: yachaab <yachaab@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/11 16:19:06 by selrhair          #+#    #+#             */
-/*   Updated: 2023/08/09 13:20:41 by yachaab          ###   ########.fr       */
+/*   Updated: 2023/08/09 15:38:48 by yachaab          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -109,7 +109,7 @@ void	execution(t_parser_var *var)
 	t_data	*d;
 	int		fd[2];
 
-	stat = 0;
+	stat = g_glob.exit_status;
 	save_last_in_out(var);
 	if (heredoc(var))
 	{

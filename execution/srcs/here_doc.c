@@ -56,6 +56,7 @@ int	piping_forking_h(t_data *data, int *fd)
 	int	stat;
 
 	stat = 0;
+	close(fd[1]);
 	data->last_hdc = fd[0];
 	while (wait(&stat) > 0)
 		;
@@ -94,7 +95,6 @@ int	piping_forking(t_data *data, t_file *file, char **env)
 	}
 	else
 	{
-		close(fd[1]);
 		if (!piping_forking_h(data, fd))
 			return (0);
 	}
