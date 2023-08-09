@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: selrhair <selrhair@student.42.fr>          +#+  +:+       +#+        */
+/*   By: yachaab <yachaab@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/18 16:54:44 by selrhair          #+#    #+#             */
-/*   Updated: 2023/08/09 18:26:37 by selrhair         ###   ########.fr       */
+/*   Updated: 2023/08/09 18:47:40 by yachaab          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,5 +39,7 @@ void	ft_print_exit_err(char *str);
 void	print_exit(char *cmd);
 void	ft_tmp(char *cmd);
 void	ft_store_pwd(t_parser_var *var);
-
+void	ft_main_help(t_parser_var *var, t_data *d, int *fd, int i);
+void	ambiguous_error(t_file *file);
+void	execute_in_child_proc(t_parser_var *var, t_data *data, int *fd);
 #endif

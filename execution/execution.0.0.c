@@ -3,16 +3,16 @@
 /*                                                        :::      ::::::::   */
 /*   execution.0.0.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: selrhair <selrhair@student.42.fr>          +#+  +:+       +#+        */
+/*   By: yachaab <yachaab@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/11 16:19:06 by selrhair          #+#    #+#             */
-/*   Updated: 2023/08/09 18:23:19 by selrhair         ###   ########.fr       */
+/*   Updated: 2023/08/09 18:56:58 by yachaab          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libs/minishell.h"
 
-static void	execute_in_child_proc(t_parser_var *var, t_data *data, int *fd)
+void	execute_in_child_proc(t_parser_var *var, t_data *data, int *fd)
 {
 	signal(SIGINT, SIG_DFL);
 	signal(SIGQUIT, SIG_DFL);
@@ -73,16 +73,6 @@ static int	run_built_in_parent(t_data *d, t_parser_var *v)
 		return (0);
 	}
 	return (1);
-}
-
-void	ft_main_help(t_parser_var *var, t_data *d, int *fd, int i)
-{
-	if (var->pid[i] < 0)
-		internal_error_msg("", errno);
-	if (!var->pid[i])
-		execute_in_child_proc(var, d, fd);
-	else
-		parent_closing_pipe_part(d, fd);
 }
 
 static int	main_child_loop(t_parser_var *var, t_data *d, int *fd)

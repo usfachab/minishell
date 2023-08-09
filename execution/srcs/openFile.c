@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   openFile.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: selrhair <selrhair@student.42.fr>          +#+  +:+       +#+        */
+/*   By: yachaab <yachaab@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/23 17:30:57 by yachaab           #+#    #+#             */
-/*   Updated: 2023/08/09 16:42:10 by selrhair         ###   ########.fr       */
+/*   Updated: 2023/08/09 18:53:16 by yachaab          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -74,16 +74,14 @@ static int	main_work(t_data *data, t_file *file)
 		data->in = data->last_hdc;
 	else if (file->type == -1)
 	{
-		write(2, "minishell: ", 11);
-		write(2, file->file_name, ft_strlen(file->file_name));
-		write(2, ": ambiguous redirect\n", 21);
+		ambiguous_error(file);
 		return (0);
 	}
 	if (data->in == -1 || data->out == -1)
 	{
+		perror(file->file_name);
 		if (data->in == -1)
 			return (-1);
-		perror(file->file_name);
 		data->in = 0;
 		data->out = 1;
 		return (0);
