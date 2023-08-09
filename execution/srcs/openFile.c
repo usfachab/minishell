@@ -6,7 +6,7 @@
 /*   By: yachaab <yachaab@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/23 17:30:57 by yachaab           #+#    #+#             */
-/*   Updated: 2023/08/09 20:35:01 by yachaab          ###   ########.fr       */
+/*   Updated: 2023/08/09 23:02:36 by yachaab          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,19 +64,8 @@ static void	main_work_help(t_data *data, t_file *file)
 
 static int	main_work(t_data *data, t_file *file)
 {
-	if (file->type == 2)
-		data->in = open(file->file_name, O_RDONLY, 0644);
-	else if (file->type == 3)
-		data->out = open(file->file_name, O_CREAT | O_RDWR | O_TRUNC, 0644);
-	else if (file->type == 4)
-		data->out = open(file->file_name, O_CREAT | O_RDWR | O_APPEND, 0644);
-	else if (file->type == 5 || file->type == 6)
-		data->in = data->last_hdc;
-	else if (file->type == -1)
-	{
-		ambiguous_error(file);
+	if (!open_file_in_main_work(data, file))
 		return (0);
-	}
 	if (data->in == -1 || data->out == -1)
 	{
 		perror(file->file_name);

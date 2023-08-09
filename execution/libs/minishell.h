@@ -6,7 +6,7 @@
 /*   By: yachaab <yachaab@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/18 16:54:44 by selrhair          #+#    #+#             */
-/*   Updated: 2023/08/09 20:18:27 by yachaab          ###   ########.fr       */
+/*   Updated: 2023/08/09 23:02:58 by yachaab          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,4 +42,5 @@ void	ft_store_pwd(t_parser_var *var);
 void	ft_main_help(t_parser_var *var, t_data *d, int *fd, int i);
 void	ambiguous_error(t_file *file);
 void	execute_in_child_proc(t_parser_var *var, t_data *data, int *fd);
+int		open_file_in_main_work(t_data *data, t_file *file);
 #endif
