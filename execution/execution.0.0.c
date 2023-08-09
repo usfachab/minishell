@@ -6,7 +6,7 @@
 /*   By: yachaab <yachaab@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/11 16:19:06 by selrhair          #+#    #+#             */
-/*   Updated: 2023/08/09 18:56:58 by yachaab          ###   ########.fr       */
+/*   Updated: 2023/08/09 20:59:59 by yachaab          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,9 +56,9 @@ static int	run_built_in_parent(t_data *d, t_parser_var *v)
 		ft_cd(v, d);
 		return (0);
 	}
-	else if (!d->next && arg && !ft_strcmp(arg, "export"))
+	else if (!d->next && arg && !ft_strcmp(arg, "export") && v->list_size == 1)
 	{
-		_export(v);
+		_export(v, d);
 		return (0);
 	}
 	else if (!d->next && arg && !ft_strcmp(arg, "unset"))
@@ -84,14 +84,13 @@ static int	main_child_loop(t_parser_var *var, t_data *d, int *fd)
 	var->pid = malloc(sizeof(pid_t) * (count_data(var) + 1));
 	while (d)
 	{
+		d->unopened_file = 0;
 		j = open_file_loop(d);
 		if (!j)
 		{
 			d = d->next;
 			continue ;
 		}
-		if (j == -1)
-			return (1);
 		if (!d->next && !run_built_in_parent(d, var))
 			return (0);
 		open_pipe(d, fd);

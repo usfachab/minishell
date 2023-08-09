@@ -6,7 +6,7 @@
 /*   By: yachaab <yachaab@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/02 16:17:03 by yachaab           #+#    #+#             */
-/*   Updated: 2023/08/08 13:04:43 by yachaab          ###   ########.fr       */
+/*   Updated: 2023/08/09 20:27:18 by yachaab          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,6 +45,7 @@ typedef struct DATA_STRUCT
 	int						in;
 	int						out;
 	int						prev;
+	int						unopened_file;
 	int						last_hdc;
 	int						ambiguous;
 	struct DATA_STRUCT		*next;

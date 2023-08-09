@@ -6,7 +6,7 @@
 /*   By: yachaab <yachaab@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/09 18:34:21 by yachaab           #+#    #+#             */
-/*   Updated: 2023/08/09 18:47:22 by yachaab          ###   ########.fr       */
+/*   Updated: 2023/08/09 20:30:17 by yachaab          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,11 @@ void	ft_main_help(t_parser_var *var, t_data *d, int *fd, int i)
 	if (var->pid[i] < 0)
 		internal_error_msg("", errno);
 	if (!var->pid[i])
+	{
+		if (d->unopened_file == -1)
+			exit (1);
 		execute_in_child_proc(var, d, fd);
+	}
 	else
 		parent_closing_pipe_part(d, fd);
 }

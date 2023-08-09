@@ -6,7 +6,7 @@
 /*   By: yachaab <yachaab@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/23 17:30:57 by yachaab           #+#    #+#             */
-/*   Updated: 2023/08/09 18:53:16 by yachaab          ###   ########.fr       */
+/*   Updated: 2023/08/09 20:35:01 by yachaab          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -81,7 +81,11 @@ static int	main_work(t_data *data, t_file *file)
 	{
 		perror(file->file_name);
 		if (data->in == -1)
+		{
+			data->in = 0;
+			data->unopened_file = -1;
 			return (-1);
+		}
 		data->in = 0;
 		data->out = 1;
 		return (0);

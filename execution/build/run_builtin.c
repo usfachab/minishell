@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   run_builtin.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: selrhair <selrhair@student.42.fr>          +#+  +:+       +#+        */
+/*   By: yachaab <yachaab@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/27 15:07:07 by yachaab           #+#    #+#             */
-/*   Updated: 2023/08/09 18:12:43 by selrhair         ###   ########.fr       */
+/*   Updated: 2023/08/09 20:18:17 by yachaab          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,7 @@ static void	which_builtin(t_parser_var *var, int index, t_data *data)
 	else if (index == 3)
 		ft_env(var->env);
 	else if (index == 4)
-		_export(var);
+		_export(var, data);
 	else if (index == 5)
 		ft_unset(var);
 	else if (index == 6)

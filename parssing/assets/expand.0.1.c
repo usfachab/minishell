@@ -6,7 +6,7 @@
 /*   By: yachaab <yachaab@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/02 15:59:13 by yachaab           #+#    #+#             */
-/*   Updated: 2023/08/08 21:17:03 by yachaab          ###   ########.fr       */
+/*   Updated: 2023/08/09 20:02:52 by yachaab          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@ char	*_getenv(char *buffer, char **env)
 	if (!ft_strncmp(buffer, "?", 1))
 		return (ft_itoa(g_glob.exit_status));
 	if (!ft_strncmp(buffer, "$", 1))
-		return (ft_strdup("2784"));
+		return (ft_strdup("$$"));
 	while (env && env[i])
 	{
 		if (ft_strncmp(buffer, env[i], len) == 0

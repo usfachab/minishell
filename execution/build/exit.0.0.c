@@ -6,7 +6,7 @@
 /*   By: yachaab <yachaab@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/23 22:55:29 by yachaab           #+#    #+#             */
-/*   Updated: 2023/08/09 14:33:36 by yachaab          ###   ########.fr       */
+/*   Updated: 2023/08/09 20:55:20 by yachaab          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,14 +44,14 @@ int	ft_exit_help(t_data *data)
 		&& (ft_just_number(data->cmd_args[1])
 			|| !data->cmd_args[1][0]))
 	{
-		write (2, "exit\n", 5);
+		write (1, "exit\n", 5);
 		write (2, "exit: numeric argument required\n", 32);
 		g_glob.exit_status = 255;
 		exit(255);
 	}
 	else if (data->cmd_args[2])
 	{
-		write (2, "exit\n", 5);
+		write (1, "exit\n", 5);
 		write (2, "exit: too many arguments\n", 25);
 		g_glob.exit_status = 1;
 		return (1);
@@ -59,7 +59,7 @@ int	ft_exit_help(t_data *data)
 	else if (data->cmd_args[1])
 	{
 		g_glob.exit_status = ft_atoi(data->cmd_args[1]);
-		write (2, "exit\n", 5);
+		write (1, "exit\n", 5);
 		exit(g_glob.exit_status);
 	}
 	return (0);
@@ -71,7 +71,7 @@ int	ft_exit(t_data *data)
 	{
 		if (!data->cmd_args[1])
 		{
-			write (2, "exit\n", 5);
+			write (1, "exit\n", 5);
 			exit (g_glob.exit_status);
 		}
 		if (ft_exit_help(data))

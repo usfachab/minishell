@@ -6,7 +6,7 @@
 /*   By: yachaab <yachaab@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/23 22:53:17 by yachaab           #+#    #+#             */
-/*   Updated: 2023/08/08 14:05:34 by yachaab          ###   ########.fr       */
+/*   Updated: 2023/08/09 20:19:14 by yachaab          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -84,13 +84,13 @@ static void	show_exported_variables(t_list *env)
 	}
 }
 
-void	_export(t_parser_var *var)
+void	_export(t_parser_var *var, t_data *data)
 {
 	t_list	*env;
 	char	**cmd;
 
 	env = var->env;
-	cmd = var->data->cmd_args;
+	cmd = data->cmd_args;
 	if (!(*(cmd + 1)))
 		show_exported_variables(env);
 	else

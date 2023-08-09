@@ -6,7 +6,7 @@
 /*   By: yachaab <yachaab@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/03 22:33:07 by yachaab           #+#    #+#             */
-/*   Updated: 2023/08/09 15:12:59 by yachaab          ###   ########.fr       */
+/*   Updated: 2023/08/09 20:10:55 by yachaab          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,9 +29,9 @@ void	free_close(t_data *data)
 
 	if (data->last_hdc > 2)
 		close(data->last_hdc);
-	if (data->in != 0)
+	if (data->in >  2)
 		close(data->in);
-	if (data->out != 1)
+	if (data->out > 2)
 		close(data->out);
 	if (data->prev > 2)
 		close(data->prev);
