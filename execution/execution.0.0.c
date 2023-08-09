@@ -75,7 +75,7 @@ static int	run_built_in_parent(t_data *d, t_parser_var *v)
 	return (1);
 }
 
-static void	main_child_loop(t_parser_var *var, t_data *d, int *fd)
+static int	main_child_loop(t_parser_var *var, t_data *d, int *fd)
 {
 	int	i;
 
