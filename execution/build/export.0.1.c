@@ -6,7 +6,7 @@
 /*   By: yachaab <yachaab@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/01 16:55:49 by selrhair          #+#    #+#             */
-/*   Updated: 2023/08/09 22:40:14 by yachaab          ###   ########.fr       */
+/*   Updated: 2023/08/09 22:42:44 by yachaab          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,7 +32,8 @@ void	ft_help_1(char *arg, t_list *env, t_parser_var *var)
 		}
 		else
 		{
-			var->tmp = ft_strjoin(var->altered_node->content, ft_strchr(arg, '='));
+			var->tmp = ft_strjoin(var->altered_node->content,
+					ft_strchr(arg, '='));
 			free(var->altered_node->content);
 			var->altered_node->content = ft_strdup(var->tmp);
 			free(var->first);
