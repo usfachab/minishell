@@ -6,7 +6,7 @@
 /*   By: yachaab <yachaab@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/21 15:59:08 by yachaab           #+#    #+#             */
-/*   Updated: 2023/08/09 13:14:41 by yachaab          ###   ########.fr       */
+/*   Updated: 2023/08/09 13:46:46 by yachaab          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -87,6 +87,8 @@ int	piping_forking(t_data *data, t_file *file, char **env)
 	if (!pid)
 	{
 		signal(SIGINT, SIG_DFL);
+		if (fd[0] != 0)
+			close(fd[0]);
 		main_loop(file, env, fd[1]);
 		close(fd[1]);
 	}

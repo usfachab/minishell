@@ -6,7 +6,7 @@
 /*   By: yachaab <yachaab@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/03 22:33:07 by yachaab           #+#    #+#             */
-/*   Updated: 2023/08/08 15:57:25 by yachaab          ###   ########.fr       */
+/*   Updated: 2023/08/09 14:39:11 by yachaab          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,6 +38,12 @@ void	reset(t_parser_var *var)
 				free(var->data->cmd_args[i]);
 			while (var->data && var->data->file)
 			{
+				if (var->data->last_hdc != 0)
+					close(var->data->last_hdc);
+				if (var->data->in != 0)
+					close(var->data->in);
+				if (var->data->out != 1)
+					close(var->data->out);
 				file_next = var->data->file->next;
 				free(var->data->file->file_name);
 				free(var->data->file);

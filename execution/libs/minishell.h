@@ -6,7 +6,7 @@
 /*   By: yachaab <yachaab@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/18 16:54:44 by selrhair          #+#    #+#             */
-/*   Updated: 2023/08/09 13:19:06 by yachaab          ###   ########.fr       */
+/*   Updated: 2023/08/09 14:31:52 by yachaab          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,6 +35,6 @@ t_list	*check_for_variable_existance(char *var_name, t_list *env);
 void	handling_solo_variable(char *cmd, t_list *env);
 void	execute(t_parser_var *var, t_data *data, int *fd);
 long	ft_atoi(char *str);
-void	ft_print_exit_err(void);
+void	ft_print_exit_err(char *str);
 
 #endif
