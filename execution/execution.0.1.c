@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   execution.0.1.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: yachaab <yachaab@student.42.fr>            +#+  +:+       +#+        */
+/*   By: selrhair <selrhair@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/02 16:32:56 by yachaab           #+#    #+#             */
-/*   Updated: 2023/08/09 12:45:15 by yachaab          ###   ########.fr       */
+/*   Updated: 2023/08/09 15:07:08 by selrhair         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,6 +34,13 @@ static char	*absolute_path(char *cmd)
 	return (NULL);
 }
 
+void	ft_tmp(char *cmd)
+{
+	write(2, "minishell: ", 11);
+	write(2, cmd, ft_strlen(cmd));
+	write(2, ": command not found\n", 20);
+}
+
 static char	*hanling_path(char *cmd, char **splited_path)
 {
 	int		i;
@@ -58,9 +65,7 @@ static char	*hanling_path(char *cmd, char **splited_path)
 		free(path);
 		i++;
 	}
-	write(2, "minishell: ", 11);
-	write(2, cmd, ft_strlen(cmd));
-	write(2, ": command not found\n", 20);
+	ft_tmp(cmd);
 	g_glob.exit_status = 127;
 	exit(g_glob.exit_status);
 }

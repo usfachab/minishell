@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   execution.0.2.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: yachaab <yachaab@student.42.fr>            +#+  +:+       +#+        */
+/*   By: selrhair <selrhair@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/02 17:08:57 by yachaab           #+#    #+#             */
-/*   Updated: 2023/08/09 13:37:37 by yachaab          ###   ########.fr       */
+/*   Updated: 2023/08/09 16:38:06 by selrhair         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,7 +33,7 @@ void	wait__signal(t_parser_var *var, int stat)
 	int	i;
 
 	i = 0;
-	while (i < var->list_size)
+	while (i < var->list_size && var->pid[i] != 0)
 	{
 		waitpid(var->pid[i], &stat, WUNTRACED);
 		if (stat == 0)

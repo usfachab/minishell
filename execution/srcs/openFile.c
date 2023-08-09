@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   openFile.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: yachaab <yachaab@student.42.fr>            +#+  +:+       +#+        */
+/*   By: selrhair <selrhair@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/23 17:30:57 by yachaab           #+#    #+#             */
-/*   Updated: 2023/08/08 13:03:25 by yachaab          ###   ########.fr       */
+/*   Updated: 2023/08/09 16:42:10 by selrhair         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -81,6 +81,8 @@ static int	main_work(t_data *data, t_file *file)
 	}
 	if (data->in == -1 || data->out == -1)
 	{
+		if (data->in == -1)
+			return (-1);
 		perror(file->file_name);
 		data->in = 0;
 		data->out = 1;
@@ -93,15 +95,22 @@ static int	main_work(t_data *data, t_file *file)
 int	open_file_loop(t_data *data)
 {
 	t_file	*file;
+	int		i;
 
 	data->out = 1;
 	file = data->file;
 	while (file)
 	{
-		if (!main_work(data, file))
+		i = main_work(data, file);
+		if (!i)
 		{
 			g_glob.exit_status = 1;
 			return (0);
+		}
+		if (i == -1)
+		{
+			g_glob.exit_status = 1;
+			return (-1);
 		}
 		file = file->next;
 	}
