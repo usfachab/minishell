@@ -21,7 +21,7 @@ SRC_PAR		=	main.c main.0.1.c reset.c assets/lexer.c assets/parser.0.0.c assets/p
 SRC_EXE		=	execution.0.0.c execution.0.1.c execution.0.2.c srcs/here_doc.c srcs/openFile.c \
 				srcs/convertToArray.c build/export.0.0.c build/export.0.1.c  build/export.0.2.c \
 				build/cd.c build/echo.c build/exit.0.0.c build/exit.0.1.c srcs/here_doc_help.c build/pwd.c build/unset.c \
-				build/run_builtin.c
+				build/run_builtin.c build/cd_extra.c
 
 PRE_PAR 	=	$(addprefix parssing/, $(SRC_PAR))
 
@@ -41,7 +41,7 @@ $(NAME) : $(OBJ_PAR) $(OBJ_EXE)
 	@$(CC) $(CFALGS) -c $< -o $@ $(IDFLAG)
 
 git :
-	make fclean && git add . && git commit -m "UPDATE: LEAKS AMBIG -> OK | NORM -> OK | NEW_REPO -> minishell | EXIT -> NOK" && git push -f origin master
+	make fclean && git add . && git commit -m "UPDATE: LEAKS AMBIG -> OK | NORM -> OK | NEW_REPO -> minishell | EXIT -> OK | CD -> NOK" && git push -f origin master
 
 clean :
 	@echo "$(YALLOW)Cleaning$(NONE)"

@@ -6,7 +6,7 @@
 /*   By: selrhair <selrhair@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/02 16:32:56 by yachaab           #+#    #+#             */
-/*   Updated: 2023/08/09 15:07:08 by selrhair         ###   ########.fr       */
+/*   Updated: 2023/08/09 18:17:16 by selrhair         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,13 +34,6 @@ static char	*absolute_path(char *cmd)
 	return (NULL);
 }
 
-void	ft_tmp(char *cmd)
-{
-	write(2, "minishell: ", 11);
-	write(2, cmd, ft_strlen(cmd));
-	write(2, ": command not found\n", 20);
-}
-
 static char	*hanling_path(char *cmd, char **splited_path)
 {
 	int		i;
@@ -50,13 +43,7 @@ static char	*hanling_path(char *cmd, char **splited_path)
 	if (cmd && !cmd[0])
 		external_error_msg("minishell: : command not found\n", 127);
 	if (!splited_path)
-	{
-		write(2, "minishell: ", 11);
-		write(2, cmd, ft_strlen(cmd));
-		write(2, ": No such file or directory\n", 28);
-		g_glob.exit_status = 127;
-		exit(g_glob.exit_status);
-	}
+		print_exit(cmd);
 	while (splited_path && splited_path[i])
 	{
 		path = _join_path(splited_path[i], cmd);

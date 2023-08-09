@@ -6,11 +6,18 @@
 /*   By: selrhair <selrhair@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/02 17:08:57 by yachaab           #+#    #+#             */
-/*   Updated: 2023/08/09 16:38:06 by selrhair         ###   ########.fr       */
+/*   Updated: 2023/08/09 18:17:20 by selrhair         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libs/minishell.h"
+
+void	ft_tmp(char *cmd)
+{
+	write(2, "minishell: ", 11);
+	write(2, cmd, ft_strlen(cmd));
+	write(2, ": command not found\n", 20);
+}
 
 int	count_data(t_parser_var *var)
 {
@@ -67,7 +74,7 @@ void	execute(t_parser_var *var, t_data *data, int *fd)
 	str = NULL;
 	_dupping(data, fd);
 	if (!run_builtin(data, var))
-		return ;
+		exit(g_glob.exit_status);
 	if (data->cmd_args[0])
 	{
 		str = ft_strrchr(data->cmd_args[0], '/');
@@ -75,4 +82,13 @@ void	execute(t_parser_var *var, t_data *data, int *fd)
 		execve(path, data->cmd_args, var->envp);
 		internal_error_msg("minishell: ", errno);
 	}
+}
+
+void	print_exit(char *cmd)
+{
+	write(2, "minishell: ", 11);
+	write(2, cmd, ft_strlen(cmd));
+	write(2, ": No such file or directory\n", 28);
+	g_glob.exit_status = 127;
+	exit(g_glob.exit_status);
 }

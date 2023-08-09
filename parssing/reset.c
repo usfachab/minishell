@@ -6,7 +6,7 @@
 /*   By: yachaab <yachaab@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/03 22:33:07 by yachaab           #+#    #+#             */
-/*   Updated: 2023/08/09 15:00:17 by yachaab          ###   ########.fr       */
+/*   Updated: 2023/08/09 15:12:59 by yachaab          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,10 +23,30 @@ void	restofrest(t_parser_var *var)
 		free(var->pid);
 }
 
+void	free_close(t_data *data)
+{
+	t_file	*file_next;
+
+	if (data->last_hdc > 2)
+		close(data->last_hdc);
+	if (data->in != 0)
+		close(data->in);
+	if (data->out != 1)
+		close(data->out);
+	if (data->prev > 2)
+		close(data->prev);
+	while (data && data->file)
+	{
+		file_next = data->file->next;
+		free(data->file->file_name);
+		free(data->file);
+		data->file = file_next;
+	}
+}
+
 void	reset(t_parser_var *var)
 {
 	int		i;
-	t_file	*file_next;
 	t_data	*data_next;
 
 	if (var)
@@ -36,19 +56,7 @@ void	reset(t_parser_var *var)
 			i = -1;
 			while (var->data->cmd_args && var->data->cmd_args[++i])
 				free(var->data->cmd_args[i]);
-			while (var->data && var->data->file)
-			{
-				if (var->data->last_hdc != 0)
-					close(var->data->last_hdc);
-				if (var->data->in != 0)
-					close(var->data->in);
-				if (var->data->out != 1)
-					close(var->data->out);
-				file_next = var->data->file->next;
-				free(var->data->file->file_name);
-				free(var->data->file);
-				var->data->file = file_next;
-			}
+			free_close(var->data);
 			data_next = var->data->next;
 			free(var->data->cmd_args);
 			free(var->data);

@@ -6,7 +6,7 @@
 /*   By: selrhair <selrhair@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/11 16:19:06 by selrhair          #+#    #+#             */
-/*   Updated: 2023/08/09 16:47:27 by selrhair         ###   ########.fr       */
+/*   Updated: 2023/08/09 18:23:19 by selrhair         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,7 +53,7 @@ static int	run_built_in_parent(t_data *d, t_parser_var *v)
 	arg = d->cmd_args[0];
 	if (v->list_size == 1 && arg && !ft_strcmp(arg, "cd"))
 	{
-		ft_cd(v, d, 0);
+		ft_cd(v, d);
 		return (0);
 	}
 	else if (!d->next && arg && !ft_strcmp(arg, "export"))
@@ -75,10 +75,20 @@ static int	run_built_in_parent(t_data *d, t_parser_var *v)
 	return (1);
 }
 
+void	ft_main_help(t_parser_var *var, t_data *d, int *fd, int i)
+{
+	if (var->pid[i] < 0)
+		internal_error_msg("", errno);
+	if (!var->pid[i])
+		execute_in_child_proc(var, d, fd);
+	else
+		parent_closing_pipe_part(d, fd);
+}
+
 static int	main_child_loop(t_parser_var *var, t_data *d, int *fd)
 {
 	int	i;
-	int j;
+	int	j;
 
 	i = 0;
 	var->pid = malloc(sizeof(pid_t) * (count_data(var) + 1));
@@ -96,12 +106,7 @@ static int	main_child_loop(t_parser_var *var, t_data *d, int *fd)
 			return (0);
 		open_pipe(d, fd);
 		var->pid[i] = fork();
-		if (var->pid[i] < 0)
-			internal_error_msg("", errno);
-		if (!var->pid[i])
-			execute_in_child_proc(var, d, fd);
-		else
-			parent_closing_pipe_part(d, fd);
+		ft_main_help(var, d, fd, i);
 		d = d->next;
 		i++;
 	}
@@ -114,7 +119,7 @@ void	execution(t_parser_var *var)
 	t_data	*d;
 	int		fd[2];
 
-	stat = 0;
+	stat = g_glob.exit_status;
 	save_last_in_out(var);
 	if (heredoc(var))
 	{
