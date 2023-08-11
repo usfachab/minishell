@@ -6,7 +6,7 @@
 /*   By: yachaab <yachaab@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/23 22:54:44 by yachaab           #+#    #+#             */
-/*   Updated: 2023/08/11 17:11:11 by yachaab          ###   ########.fr       */
+/*   Updated: 2023/08/11 18:55:32 by yachaab          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -108,7 +108,6 @@ int	ft_cd(t_parser_var *var, t_data *data)
 	t_list	*tmp;
 	int		stat;
 
-	stat = -1;
 	tmp = var->env;
 	if (g_glob.oldpwd)
 		free(g_glob.oldpwd);
@@ -129,5 +128,5 @@ int	ft_cd(t_parser_var *var, t_data *data)
 		}
 	}
 	ft_store_pwd(var);
-	return (stat);
+	return (0);
 }

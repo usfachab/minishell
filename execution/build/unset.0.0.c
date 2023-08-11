@@ -6,7 +6,7 @@
 /*   By: yachaab <yachaab@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/23 22:52:22 by yachaab           #+#    #+#             */
-/*   Updated: 2023/08/11 16:39:35 by yachaab          ###   ########.fr       */
+/*   Updated: 2023/08/11 18:25:30 by yachaab          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -77,7 +77,10 @@ void	_unset(t_parser_var *var, char **args)
 	{
 		tenv = var->env;
 		if (!valid_argument(args[i]))
+		{
 			msg_error(args[i]);
+			return;
+		}
 		var->env = remove_node(tenv, args[i]);
 		i++;
 	}

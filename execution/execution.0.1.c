@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   execution.0.1.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: selrhair <selrhair@student.42.fr>          +#+  +:+       +#+        */
+/*   By: yachaab <yachaab@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/02 16:32:56 by yachaab           #+#    #+#             */
-/*   Updated: 2023/08/09 18:17:16 by selrhair         ###   ########.fr       */
+/*   Updated: 2023/08/11 19:19:14 by yachaab          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -108,9 +108,9 @@ void	parent_closing_pipe_part(t_data *data, int *fd)
 	}
 	else
 	{
-		if (data->in != data->prev && data->prev != 0)
+		if (data->in != data->prev && data->prev > 2)
 			close(data->prev);
 	}
-	if (data->in != 0)
+	if (data->in > 2)
 		close(data->in);
 }

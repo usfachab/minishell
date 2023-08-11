@@ -6,7 +6,7 @@
 /*   By: yachaab <yachaab@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/23 17:30:57 by yachaab           #+#    #+#             */
-/*   Updated: 2023/08/09 23:02:36 by yachaab          ###   ########.fr       */
+/*   Updated: 2023/08/11 19:34:45 by yachaab          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,13 +52,13 @@ void	save_last_in_out(t_parser_var *var)
 	}
 }
 
-static void	main_work_help(t_data *data, t_file *file)
+static void	closing_unused_file(t_data *data, t_file *file)
 {
-	if (data->last_in && (data->last_in != file && (file->type != 5
-				&& file->type != 6)) && (file->type != 3 && file->type != 4))
+	if (data->last_in && (data->last_in != file)
+		&& (file->type == 2) && data->in > 2)
 		close(data->in);
 	if (data->last_out && (data->last_out != file)
-		&& (file->type == 3 && file->type == 4))
+		&& (file->type == 3 || file->type == 4) && data->out > 2)
 		close(data->out);
 }
 
@@ -79,7 +79,7 @@ static int	main_work(t_data *data, t_file *file)
 		data->out = 1;
 		return (0);
 	}
-	main_work_help(data, file);
+	closing_unused_file(data, file);
 	return (1);
 }
 
