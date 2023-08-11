@@ -6,7 +6,7 @@
 /*   By: yachaab <yachaab@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/18 16:54:44 by selrhair          #+#    #+#             */
-/*   Updated: 2023/08/09 23:02:58 by yachaab          ###   ########.fr       */
+/*   Updated: 2023/08/11 16:37:24 by yachaab          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@ int		count_data(t_parser_var *var);
 void	wait__signal(t_parser_var *var, int stat);
 void	_pwd(t_list *env);
 void	_echo(char **cmd);
-void	ft_unset(t_parser_var *var);
+void	_unset(t_parser_var *var, char **args);
 int		ft_cd(t_parser_var *var, t_data *data);
 int		ft_exit(t_data *data);
 bool	heredoc(t_parser_var *var);
@@ -38,9 +38,16 @@ long	ft_atoi(char *str);
 void	ft_print_exit_err(char *str);
 void	print_exit(char *cmd);
 void	ft_tmp(char *cmd);
-void	ft_store_pwd(t_parser_var *var);
+void	ft_store_pwd(t_parser_var *env);
 void	ft_main_help(t_parser_var *var, t_data *d, int *fd, int i);
 void	ambiguous_error(t_file *file);
 void	execute_in_child_proc(t_parser_var *var, t_data *data, int *fd);
 int		open_file_in_main_work(t_data *data, t_file *file);
+int		alphaunder(char c);
+int		alphanumunder(char *cmd);
+int		check_if_variable_is_valid(char *cmd);
+void	ft_lstdelone(t_list *lst, t_list *next);
+int		compare_keys(t_list *e, char *arg);
+t_list	*remove_head(t_list *env);
+int		fork_fail(int pid);
 #endif

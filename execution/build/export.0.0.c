@@ -6,7 +6,7 @@
 /*   By: yachaab <yachaab@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/23 22:53:17 by yachaab           #+#    #+#             */
-/*   Updated: 2023/08/09 22:10:04 by yachaab          ###   ########.fr       */
+/*   Updated: 2023/08/10 15:51:06 by yachaab          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,7 @@ static void	make_arg_a_env_variable(char *arg, t_list *env, t_parser_var *var)
 	}
 }
 
-static int	check_if_variable_is_valid(char *cmd)
+int	check_if_variable_is_valid(char *cmd)
 {
 	if (!alphaunder(*cmd))
 		return (0);

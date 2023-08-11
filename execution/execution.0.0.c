@@ -6,7 +6,7 @@
 /*   By: yachaab <yachaab@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/11 16:19:06 by selrhair          #+#    #+#             */
-/*   Updated: 2023/08/09 20:59:59 by yachaab          ###   ########.fr       */
+/*   Updated: 2023/08/11 16:34:10 by yachaab          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,7 +63,7 @@ static int	run_built_in_parent(t_data *d, t_parser_var *v)
 	}
 	else if (!d->next && arg && !ft_strcmp(arg, "unset"))
 	{
-		ft_unset(v);
+		_unset(v, d->cmd_args);
 		return (0);
 	}
 	else if (!d->next && arg && !ft_strcmp(arg, "echo") && d->out < 2)
@@ -95,6 +95,8 @@ static int	main_child_loop(t_parser_var *var, t_data *d, int *fd)
 			return (0);
 		open_pipe(d, fd);
 		var->pid[i] = fork();
+		if (!fork_fail(var->pid[i]))
+			break ;
 		ft_main_help(var, d, fd, i);
 		d = d->next;
 		i++;

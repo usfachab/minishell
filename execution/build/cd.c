@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cd.c                                               :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: selrhair <selrhair@student.42.fr>          +#+  +:+       +#+        */
+/*   By: yachaab <yachaab@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/23 22:54:44 by yachaab           #+#    #+#             */
-/*   Updated: 2023/08/09 18:26:19 by selrhair         ###   ########.fr       */
+/*   Updated: 2023/08/11 17:11:11 by yachaab          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -106,26 +106,28 @@ int	ft_cd_help_2(t_data *data)
 int	ft_cd(t_parser_var *var, t_data *data)
 {
 	t_list	*tmp;
+	int		stat;
 
+	stat = -1;
 	tmp = var->env;
 	if (g_glob.oldpwd)
 		free(g_glob.oldpwd);
 	g_glob.oldpwd = getcwd(NULL, 0);
 	if ((!data->cmd_args[1] || data->cmd_args[1][0] == '~'))
-		return (ft_cd_help_1(tmp));
+		stat = ft_cd_help_1(tmp);
 	else
 	{
 		if (ft_cd_help_2(data))
-			return (1);
-		if (g_glob.pwd == NULL && g_glob.oldpwd == NULL)
+			stat = 1;
+		else if (g_glob.pwd == NULL && g_glob.oldpwd == NULL)
 		{
 			write (2, "cd: error retrieving current directory: getcwd:", 47);
 			write (2, " cannot access parent directories: ", 35);
 			write (2, "No such file or directory\n", 26);
 			g_glob.exit_status = 0;
-			return (1);
+			stat = 1;
 		}
 	}
 	ft_store_pwd(var);
-	return (0);
+	return (stat);
 }

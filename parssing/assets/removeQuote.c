@@ -6,7 +6,7 @@
 /*   By: yachaab <yachaab@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/13 22:51:39 by yachaab           #+#    #+#             */
-/*   Updated: 2023/08/02 23:43:49 by yachaab          ###   ########.fr       */
+/*   Updated: 2023/08/11 00:34:16 by yachaab          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,8 +44,10 @@ void	init_var_with_env_variable(t_parser_var	*var, char **env)
 	var->splited_path = NULL;
 	while (env && env[i])
 	{
-		ft_lstadd_back(&(var->env), ft_lstnew(ft_strdup(env[i])));
+		if (ft_strncmp("OLDPWD=", env[i], 7) && ft_strncmp("OLDPWD", env[i], 7))
+			ft_lstadd_back(&(var->env), ft_lstnew(ft_strdup(env[i])));
 		i++;
 	}
+	ft_lstadd_back(&(var->env), ft_lstnew(ft_strdup("OLDPWD")));
 	convert_to_array(var);
 }

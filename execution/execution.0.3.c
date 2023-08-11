@@ -6,7 +6,7 @@
 /*   By: yachaab <yachaab@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/09 18:34:21 by yachaab           #+#    #+#             */
-/*   Updated: 2023/08/09 20:30:17 by yachaab          ###   ########.fr       */
+/*   Updated: 2023/08/11 16:37:42 by yachaab          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,4 +31,15 @@ void	ambiguous_error(t_file *file)
 	write(2, "minishell: ", 11);
 	write(2, file->file_name, ft_strlen(file->file_name));
 	write(2, ": ambiguous redirect\n", 21);
+}
+
+int	fork_fail(int pid)
+{
+	if (pid < 0)
+	{
+		perror("");
+		g_glob.exit_status = 1;
+		return (0);
+	}
+	return (1);
 }

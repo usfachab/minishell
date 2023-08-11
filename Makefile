@@ -2,7 +2,7 @@ NAME		=	minishell
 
 CC			=	cc
 
-CFALGS		=	-Wall -Wextra -Werror
+CFALGS		=	-Wall -Wextra -Werror -g3 #-fsanitize=address
 
 NONE		=	\033[0m
 YALLOW		=	\033[1;93m
@@ -19,8 +19,8 @@ SRC_PAR		=	main.c main.0.1.c reset.c assets/lexer.c assets/parser.0.0.c assets/p
 				helper/util.0.4.c helper/util.0.5.c helper/ft_itoa.c
 
 SRC_EXE		=	execution.0.0.c execution.0.1.c execution.0.2.c execution.0.3.c srcs/here_doc.c srcs/openFile.c \
-				srcs/convertToArray.c build/export.0.0.c build/export.0.1.c  build/export.0.2.c \
-				build/cd.c build/echo.c build/exit.0.0.c build/exit.0.1.c srcs/here_doc_help.c build/pwd.c build/unset.c \
+				srcs/convertToArray.c srcs/linked_list_utils.c build/export.0.0.c build/export.0.1.c  build/export.0.2.c build/export.0.3.c \
+				build/cd.c build/echo.c build/exit.0.0.c build/exit.0.1.c srcs/here_doc_help.c build/pwd.c build/unset.0.0.c build/unset.0.1.c \
 				build/run_builtin.c build/cd_extra.c 
 
 PRE_PAR 	=	$(addprefix parssing/, $(SRC_PAR))

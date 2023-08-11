@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cd_extra.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: selrhair <selrhair@student.42.fr>          +#+  +:+       +#+        */
+/*   By: yachaab <yachaab@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/09 18:26:04 by selrhair          #+#    #+#             */
-/*   Updated: 2023/08/09 18:27:41 by selrhair         ###   ########.fr       */
+/*   Updated: 2023/08/11 16:59:29 by yachaab          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,13 +21,21 @@ void	ft_store_pwd(t_parser_var *var)
 		return ;
 	while (tmp)
 	{
-		if (ft_strnstr(tmp->content, "PWD=", 4))
+		if (!ft_strncmp("PWD=", tmp->content, 4)
+			|| !ft_strncmp("PWD", tmp->content, 4))
 		{
 			free(tmp->content);
-			free(tmp->next->content);
+			tmp->content = NULL;
 			tmp->content = ft_strjoin("PWD=", g_glob.pwd);
-			tmp->next->content = ft_strjoin("OLDPWD=", g_glob.oldpwd);
+		}
+		else if (!ft_strncmp("OLDPWD=", tmp->content, 7)
+			|| !ft_strncmp("OLDPWD", tmp->content, 7))
+		{
+			free(tmp->content);
+			tmp->content = NULL;
+			tmp->content = ft_strjoin("OLDPWD=", g_glob.oldpwd);
 		}
 		tmp = tmp->next;
 	}
+	convert_to_array(var);
 }
