@@ -6,7 +6,7 @@
 /*   By: yachaab <yachaab@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/02 16:06:33 by yachaab           #+#    #+#             */
-/*   Updated: 2023/08/02 23:10:07 by yachaab          ###   ########.fr       */
+/*   Updated: 2023/08/13 14:02:42 by yachaab          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,12 +53,10 @@ char	*_bufferin(char *input)
 
 char	*bufferin(char *input)
 {
-	char	*start;
 	char	*end;
 
 	end = NULL;
-	start = input;
-	end = ft_strdup(start + 1);
+	end = ft_strdup(input + 1);
 	if (end[0] == '\'' || end[0] == '\"')
 		return (strdup("\0"));
 	else if (!end[0] || !stay(end[0]))

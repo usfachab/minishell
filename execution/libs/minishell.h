@@ -6,7 +6,7 @@
 /*   By: yachaab <yachaab@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/18 16:54:44 by selrhair          #+#    #+#             */
-/*   Updated: 2023/08/12 23:43:17 by yachaab          ###   ########.fr       */
+/*   Updated: 2023/08/13 14:57:38 by yachaab          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,4 +53,5 @@ int		compare_keys(t_list *e, char *arg);
 t_list	*remove_head(t_list *env);
 int		fork_fail(int pid);
 void	set_pwd(char *arg, char *var);
+int		run_in(char *arg, t_data *d, t_parser_var *v);
 #endif

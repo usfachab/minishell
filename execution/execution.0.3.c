@@ -6,7 +6,7 @@
 /*   By: yachaab <yachaab@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/09 18:34:21 by yachaab           #+#    #+#             */
-/*   Updated: 2023/08/13 12:23:52 by yachaab          ###   ########.fr       */
+/*   Updated: 2023/08/13 14:57:57 by yachaab          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,6 +42,31 @@ int	fork_fail(int pid)
 	{
 		perror("minishell: fork: ");
 		g_glob.exit_status = 1;
+		return (0);
+	}
+	return (1);
+}
+
+int	run_in(char *arg, t_data *d, t_parser_var *v)
+{
+	if (arg && !ft_strcmp(arg, "cd"))
+	{
+		_cd(d->cmd_args);
+		return (0);
+	}
+	else if (!d->next && arg && !ft_strcmp(arg, "export") && d->out < 2)
+	{
+		_export(v, d);
+		return (0);
+	}
+	else if (!d->next && arg && !ft_strcmp(arg, "unset"))
+	{
+		_unset(d->cmd_args);
+		return (0);
+	}
+	else if (!d->next && arg && !ft_strcmp(arg, "echo") && d->out < 2)
+	{
+		_echo(d->cmd_args);
 		return (0);
 	}
 	return (1);

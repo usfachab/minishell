@@ -6,7 +6,7 @@
 /*   By: yachaab <yachaab@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/22 20:18:38 by yachaab           #+#    #+#             */
-/*   Updated: 2023/08/12 13:05:06 by yachaab          ###   ########.fr       */
+/*   Updated: 2023/08/13 13:39:32 by yachaab          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -81,14 +81,16 @@ char	**split(char *str, char *del)
 	int			index;
 	char		**word;
 	char		*string;
+	int			count;
 
+	count = count_word(str, del);
 	string = NULL;
 	index = 0;
 	i = 0;
-	word = malloc(sizeof(char *) * (count_word(str, del) + 1));
+	word = malloc(sizeof(char *) * (count + 1));
 	if (!word)
 		return (NULL);
-	while (index < count_word(str, del))
+	while (index < count)
 	{
 		string = collect_string(str, del, &i);
 		word[index] = remove_quote(string);

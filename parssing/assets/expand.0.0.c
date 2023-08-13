@@ -6,7 +6,7 @@
 /*   By: yachaab <yachaab@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/02 15:58:08 by yachaab           #+#    #+#             */
-/*   Updated: 2023/08/08 21:07:49 by yachaab          ###   ########.fr       */
+/*   Updated: 2023/08/13 13:49:14 by yachaab          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,7 +53,6 @@ static t_expand	init(void)
 	expand.len = 0;
 	return (expand);
 }
-/* FIXME: line: 65-66 Need some verifing */
 
 static char	*startex(char *input, t_expand e, char **env)
 {

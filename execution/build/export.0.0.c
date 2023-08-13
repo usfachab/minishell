@@ -6,7 +6,7 @@
 /*   By: yachaab <yachaab@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/23 22:53:17 by yachaab           #+#    #+#             */
-/*   Updated: 2023/08/12 23:10:55 by yachaab          ###   ########.fr       */
+/*   Updated: 2023/08/13 14:59:02 by yachaab          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@ static void	make_arg_a_env_variable(char *arg, t_list *env, t_parser_var *var)
 	var->size = 0;
 	if (env && arg)
 	{
-		var->equal = strchr(arg, '=');
+		var->equal = ft_strchr(arg, '=');
 		if (var->equal)
 		{
 			if ((*(var->equal - 1)) == '+')

@@ -6,7 +6,7 @@
 /*   By: yachaab <yachaab@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/11 16:19:06 by selrhair          #+#    #+#             */
-/*   Updated: 2023/08/13 12:27:34 by yachaab          ###   ########.fr       */
+/*   Updated: 2023/08/13 14:57:10 by yachaab          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,26 +53,8 @@ static int	run_built_in_parent(t_data *d, t_parser_var *v)
 	arg = d->cmd_args[0];
 	if (d->unopened_file == -1)
 			g_glob.exit_status = 1;
-	if (arg && !ft_strcmp(arg, "cd"))
-	{
-		_cd(d->cmd_args);
+	if (!run_in(arg, d, v))
 		return (0);
-	}
-	else if (!d->next && arg && !ft_strcmp(arg, "export") && d->out < 2)
-	{
-		_export(v, d);
-		return (0);
-	}
-	else if (!d->next && arg && !ft_strcmp(arg, "unset"))
-	{
-		_unset(d->cmd_args);
-		return (0);
-	}
-	else if (!d->next && arg && !ft_strcmp(arg, "echo") && d->out < 2)
-	{
-		_echo(d->cmd_args);
-		return (0);
-	}
 	return (1);
 }
 
