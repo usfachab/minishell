@@ -40,6 +40,9 @@ $(NAME) : $(OBJ_PAR) $(OBJ_EXE)
 %.o : %.c
 	@$(CC) $(CFALGS) -c $< -o $@ $(IDFLAG)
 
+git : 
+	make fclean && git add . && git commit -m "NORM -> NOK" && git push -f origin master
+
 clean :
 	@echo "$(YALLOW)Cleaning$(NONE)"
 	@rm -fr $(OBJ_PAR) $(OBJ_EXE)

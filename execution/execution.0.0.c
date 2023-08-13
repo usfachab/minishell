@@ -6,7 +6,7 @@
 /*   By: yachaab <yachaab@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/11 16:19:06 by selrhair          #+#    #+#             */
-/*   Updated: 2023/08/13 01:26:20 by yachaab          ###   ########.fr       */
+/*   Updated: 2023/08/13 12:27:34 by yachaab          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,6 +51,8 @@ static int	run_built_in_parent(t_data *d, t_parser_var *v)
 	char	*arg;
 
 	arg = d->cmd_args[0];
+	if (d->unopened_file == -1)
+			g_glob.exit_status = 1;
 	if (arg && !ft_strcmp(arg, "cd"))
 	{
 		_cd(d->cmd_args);
@@ -74,22 +76,17 @@ static int	run_built_in_parent(t_data *d, t_parser_var *v)
 	return (1);
 }
 
-static int	main_child_loop(t_parser_var *var, t_data *d, int *fd)
+static int	main_child_loop(t_parser_var *var, t_data *d)
 {
 	int	i;
-	int	j;
+	int	fd[2];
 
 	i = 0;
 	var->pid = malloc(sizeof(pid_t) * (count_data(var) + 1));
 	while (d)
 	{
 		d->unopened_file = 0;
-		j = open_file_loop(d);
-		if (!j || j == -1)
-		{
-			d = d->next;
-			continue ;
-		}
+		open_file_loop(d);
 		if (!d->next && var->list_size == 1 && !run_built_in_parent(d, var))
 			return (1);
 		open_pipe(d, fd);
@@ -107,7 +104,6 @@ void	execution(t_parser_var *var)
 {
 	int		stat;
 	t_data	*d;
-	int		fd[2];
 
 	stat = g_glob.exit_status;
 	save_last_in_out(var);
@@ -122,7 +118,7 @@ void	execution(t_parser_var *var)
 			ft_exit(d);
 			return ;
 		}
-		if (main_child_loop(var, d, fd))
+		if (main_child_loop(var, d))
 			return ;
 		wait__signal(var, stat);
 	}

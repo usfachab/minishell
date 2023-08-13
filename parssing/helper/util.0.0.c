@@ -6,7 +6,7 @@
 /*   By: yachaab <yachaab@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/30 23:26:15 by yachaab           #+#    #+#             */
-/*   Updated: 2023/08/12 21:53:05 by yachaab          ###   ########.fr       */
+/*   Updated: 2023/08/13 12:47:07 by yachaab          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,7 @@
 
 void	internal_error_msg(char *str, unsigned int err)
 {
+	write(2, "minishell: ", 11);
 	perror(str);
 	g_glob.exit_status = err;
 	exit(err);

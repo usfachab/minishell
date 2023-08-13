@@ -6,7 +6,7 @@
 /*   By: yachaab <yachaab@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/02 16:32:56 by yachaab           #+#    #+#             */
-/*   Updated: 2023/08/11 19:19:14 by yachaab          ###   ########.fr       */
+/*   Updated: 2023/08/13 12:48:03 by yachaab          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@ static char	*absolute_path(char *cmd)
 {
 	struct stat	file_stat;
 
-	if (!access(cmd, F_OK) && !access(cmd, X_OK))
+	if (!access(cmd, F_OK))
 	{
 		if (stat(cmd, &file_stat) == 0)
 		{
@@ -28,6 +28,13 @@ static char	*absolute_path(char *cmd)
 				g_glob.exit_status = 126;
 				exit(126);
 			}
+		}
+		if (access(cmd, X_OK) == -1)
+		{
+			write(2, "minishell: ", 11);
+			perror(cmd);
+			g_glob.exit_status = 126;
+			exit(126);
 		}
 		return (cmd);
 	}

@@ -6,7 +6,7 @@
 /*   By: yachaab <yachaab@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/23 17:30:57 by yachaab           #+#    #+#             */
-/*   Updated: 2023/08/13 01:23:36 by yachaab          ###   ########.fr       */
+/*   Updated: 2023/08/13 12:46:41 by yachaab          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,13 +68,9 @@ static int	main_work(t_data *data, t_file *file)
 		return (0);
 	if (data->in == -1 || data->out == -1)
 	{
+		write(2, "minishell: ", 11);
 		perror(file->file_name);
-		if (data->in == -1)
-		{
-			data->in = 0;
-			data->unopened_file = -1;
-			return (-1);
-		}
+		data->unopened_file = -1;
 		data->in = 0;
 		data->out = 1;
 		return (0);
@@ -93,16 +89,8 @@ int	open_file_loop(t_data *data)
 	while (file)
 	{
 		i = main_work(data, file);
-		if (!i)
-		{
-			g_glob.exit_status = 1;
+		if (i == 0)
 			return (0);
-		}
-		if (i == -1)
-		{
-			g_glob.exit_status = 1;
-			return (-1);
-		}
 		file = file->next;
 	}
 	return (1);

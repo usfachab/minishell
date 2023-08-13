@@ -6,7 +6,7 @@
 /*   By: yachaab <yachaab@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/15 21:26:45 by yachaab           #+#    #+#             */
-/*   Updated: 2023/08/12 18:08:13 by yachaab          ###   ########.fr       */
+/*   Updated: 2023/08/13 12:46:58 by yachaab          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,6 +30,7 @@ t_parser_var	*intitial_and_signals(t_parser_var *var, char **env)
 	var->pid = NULL;
 	if (!var)
 	{
+		write(2, "minishell: ", 11);
 		perror("");
 		exit(ENOMEM);
 	}
