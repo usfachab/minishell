@@ -6,7 +6,7 @@
 /*   By: yachaab <yachaab@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/01 17:23:12 by selrhair          #+#    #+#             */
-/*   Updated: 2023/08/09 23:04:04 by yachaab          ###   ########.fr       */
+/*   Updated: 2023/08/13 15:19:03 by yachaab          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,6 +37,7 @@ int	open_file_in_main_work(t_data *data, t_file *file)
 	else if (file->type == -1)
 	{
 		ambiguous_error(file);
+		data->unopened_file = -1;
 		return (0);
 	}
 	return (1);

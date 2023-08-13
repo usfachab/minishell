@@ -2,7 +2,7 @@ NAME		=	minishell
 
 CC			=	cc
 
-CFALGS		=	-Wall -Wextra -Werror #-g3 -fsanitize=address
+CFALGS		=	-Wall -Wextra -Werror -g3 -fsanitize=address
 
 NONE		=	\033[0m
 YALLOW		=	\033[1;93m
