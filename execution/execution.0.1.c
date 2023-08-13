@@ -6,7 +6,7 @@
 /*   By: yachaab <yachaab@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/02 16:32:56 by yachaab           #+#    #+#             */
-/*   Updated: 2023/08/13 12:48:03 by yachaab          ###   ########.fr       */
+/*   Updated: 2023/08/13 18:22:19 by yachaab          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -88,8 +88,7 @@ char	*join_with_path(char **splited_path, t_data *data, char *str)
 void	_dupping(t_data *data, int *fd)
 {
 	if (data->in == 0 && fd[0] > 2)
-		close(fd[0]);
-	if (data->in > 2)
+		close(fd[0]);	if (data->in > 2)
 	{
 		if (dup2(data->in, STDIN_FILENO) < 0)
 			internal_error_msg("minishell: ", errno);

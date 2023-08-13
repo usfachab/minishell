@@ -6,7 +6,7 @@
 /*   By: yachaab <yachaab@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/23 17:30:57 by yachaab           #+#    #+#             */
-/*   Updated: 2023/08/13 12:46:41 by yachaab          ###   ########.fr       */
+/*   Updated: 2023/08/13 18:17:54 by yachaab          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,7 +66,7 @@ static int	main_work(t_data *data, t_file *file)
 {
 	if (!open_file_in_main_work(data, file))
 		return (0);
-	if (data->in == -1 || data->out == -1)
+	if (data->in < 0 || data->out < 0)
 	{
 		write(2, "minishell: ", 11);
 		perror(file->file_name);

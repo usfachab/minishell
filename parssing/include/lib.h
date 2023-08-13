@@ -56,7 +56,7 @@ t_token			*lexer_collect_identifier(t_lexer *lexer);
 t_token			*lexer_advence_with_token(t_lexer *lexer, t_token *token);
 t_token			*init_token(int type, char *value);
 /* ---------------------------- expand ----------------------------------*/
-char			*expand(char *input, char **env);
+char			*expand(char *input, char **env, int doc);
 int				variable_contain_white_space(char *variable);
 char			*_getenv(char *buffer, char **env);
 int				end_del(char ch);

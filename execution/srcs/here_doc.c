@@ -6,7 +6,7 @@
 /*   By: yachaab <yachaab@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/21 15:59:08 by yachaab           #+#    #+#             */
-/*   Updated: 2023/08/12 17:37:33 by yachaab          ###   ########.fr       */
+/*   Updated: 2023/08/13 19:01:29 by yachaab          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,7 +36,7 @@ void	main_loop(t_file *file, char **env, int fd)
 	{
 		str = readline("> ");
 		if (str && file->type == 5 && ft_strchr(str, '$'))
-			expanded = expand(str, env);
+			expanded = expand(str, env, 1);
 		else
 			expanded = str;
 		m_l_h(file, str, expanded);

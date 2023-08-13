@@ -6,7 +6,7 @@
 /*   By: yachaab <yachaab@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/11 16:19:06 by selrhair          #+#    #+#             */
-/*   Updated: 2023/08/13 14:57:10 by yachaab          ###   ########.fr       */
+/*   Updated: 2023/08/13 19:22:20 by yachaab          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -74,7 +74,7 @@ static int	main_child_loop(t_parser_var *var, t_data *d)
 		open_pipe(d, fd);
 		var->pid[i] = fork();
 		if (!fork_fail(var->pid[i]))
-			break ;
+			return (1);
 		ft_main_help(var, d, fd, i);
 		d = d->next;
 		i++;

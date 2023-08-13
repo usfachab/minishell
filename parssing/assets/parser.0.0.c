@@ -6,7 +6,7 @@
 /*   By: yachaab <yachaab@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/17 00:48:06 by yachaab           #+#    #+#             */
-/*   Updated: 2023/08/12 17:37:33 by yachaab          ###   ########.fr       */
+/*   Updated: 2023/08/13 19:04:11 by yachaab          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,7 @@ void	expand_in_command(t_parser_var *var)
 
 	exp = NULL;
 	find_unprintable_and_replace_with_char(var->token->value);
-	exp = expand(var->token->value, g_glob.envp);
+	exp = expand(var->token->value, g_glob.envp, 0);
 	if (exp && exp != var->token->value)
 	{
 		free(var->token->value);

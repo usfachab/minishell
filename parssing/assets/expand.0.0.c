@@ -6,7 +6,7 @@
 /*   By: yachaab <yachaab@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/02 15:58:08 by yachaab           #+#    #+#             */
-/*   Updated: 2023/08/13 13:49:14 by yachaab          ###   ########.fr       */
+/*   Updated: 2023/08/13 19:14:07 by yachaab          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@ static char	*extraction(char *buffer, char **env)
 	return (variable);
 }
 
-static char	*create_buffer(char *c, char *s, char *d)
+static char	*create_buffer(char *c, char *s, char *d, int doc)
 {
 	char	*buffer;
 
@@ -33,9 +33,9 @@ static char	*create_buffer(char *c, char *s, char *d)
 		*d = *c;
 	else if (*c == *d)
 		*d = 0;
-	else if (*c == '$' && *s == 0 && *d == 0)
+	else if (*c == '$' && ((*s == 0 && *d == 0) || doc))
 		buffer = bufferin(c);
-	else if (*c == '$' && *d != 0)
+	else if (*c == '$' && (*d != 0 || doc))
 		buffer = _bufferin(c);
 	return (buffer);
 }
@@ -54,11 +54,11 @@ static t_expand	init(void)
 	return (expand);
 }
 
-static char	*startex(char *input, t_expand e, char **env)
+static char	*startex(char *input, t_expand e, char **env, int doc)
 {
 	while (input && input[e.i])
 	{
-		e.buffer = create_buffer(&(input[e.i]), &(e.s), &(e.d));
+		e.buffer = create_buffer(&(input[e.i]), &(e.s), &(e.d), doc);
 		if (e.buffer)
 		{
 			e.j = 0;
@@ -78,12 +78,12 @@ static char	*startex(char *input, t_expand e, char **env)
 	return (e.string);
 }
 
-char	*expand(char *input, char **env)
+char	*expand(char *input, char **env, int doc)
 {
 	char		*output;
 	t_expand	expand;
 
 	expand = init();
-	output = startex(input, expand, env);
+	output = startex(input, expand, env, doc);
 	return (output);
 }

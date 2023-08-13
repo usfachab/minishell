@@ -6,7 +6,7 @@
 /*   By: yachaab <yachaab@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/23 22:52:22 by yachaab           #+#    #+#             */
-/*   Updated: 2023/08/12 22:59:29 by yachaab          ###   ########.fr       */
+/*   Updated: 2023/08/13 16:41:33 by yachaab          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -77,11 +77,9 @@ void	_unset(char **args)
 	{
 		tenv = g_glob.env;
 		if (!valid_argument(args[i]))
-		{
 			msg_error(args[i]);
-			return ;
-		}
-		g_glob.env = remove_node(tenv, args[i]);
+		else
+			g_glob.env = remove_node(tenv, args[i]);
 		i++;
 	}
 	convert_to_array();
