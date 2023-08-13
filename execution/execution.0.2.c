@@ -66,11 +66,9 @@ void	wait__signal(t_parser_var *var, int stat)
 
 void	execute(t_parser_var *var, t_data *data, int *fd)
 {
-	int		i;
 	char	*str;
 	char	*path;
 
-	i = 0;
 	str = NULL;
 	_dupping(data, fd);
 	if (!run_builtin(data, var))

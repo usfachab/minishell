@@ -2,16 +2,13 @@ NAME		=	minishell
 
 CC			=	cc
 
-CFALGS		=	-Wall -Wextra -Werror -g3 -fsanitize=address
+CFALGS		=	-Wall -Wextra -Werror -fcommon -g3 -fsanitize=address
 
 NONE		=	\033[0m
 YALLOW		=	\033[1;93m
 Green		=	\033[1;32m
 Red			=	\033[0;31m
 
-IDFLAG		=	-I/Users/yachaab/homebrew/opt/readline/include
-
-LDFLAG		=	-L/Users/yachaab/homebrew/opt/readline/lib -lreadline
 
 SRC_PAR		=	main.c main.0.1.c reset.c assets/lexer.c assets/parser.0.0.c assets/parser.0.1.c assets/syntax.0.0.c assets/syntax.0.1.c assets/syntax.0.2.c \
 				assets/expand.0.0.c assets/expand.0.1.c assets/expand.0.2.c assets/extra.c assets/token.c assets/removeQuote.c \
@@ -34,11 +31,11 @@ OBJ_EXE		=	$(PRE_EXE:.c=.o)
 all : $(NAME)
 
 $(NAME) : $(OBJ_PAR) $(OBJ_EXE)
+	@$(CC) $(CFALGS) -o $@ $^ -lreadline
 	@echo  "$(Green)Compiled success$(NONE)"
-	@$(CC) $(CFALGS) $(IDFLAG) $(LDFLAG) -o $@ $^
 
 %.o : %.c
-	@$(CC) $(CFALGS) -c $< -o $@ $(IDFLAG)
+	@$(CC) $(CFALGS) -c $< -o $@ -lreadline
 
 git : 
 	make fclean && git add . && git commit -m "NORM -> OK | FINAL VERSION" && git push -f origin master

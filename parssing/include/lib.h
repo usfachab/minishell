@@ -26,6 +26,7 @@
 # include <stdbool.h>
 # include <fcntl.h>
 # include <limits.h>
+# include <wait.h>
 # include "parser.h"
 
 /* ----------------------------- parser  --------------------------------*/

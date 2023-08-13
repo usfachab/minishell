@@ -71,8 +71,8 @@ static int	main_work(t_data *data, t_file *file)
 		write(2, "minishell: ", 11);
 		perror(file->file_name);
 		data->unopened_file = -1;
-		data->in = 0;
-		data->out = 1;
+		// data->in = 0;
+		// data->out = 1;
 		return (0);
 	}
 	closing_unused_file(data, file);

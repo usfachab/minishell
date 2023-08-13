@@ -66,9 +66,6 @@ static char	*hanling_path(char *cmd, char **splited_path)
 
 char	*join_with_path(char **splited_path, t_data *data, char *str)
 {
-	int		i;
-
-	i = 0;
 	if (str != NULL)
 	{
 		if (absolute_path(data->cmd_args[0]))
@@ -88,7 +85,8 @@ char	*join_with_path(char **splited_path, t_data *data, char *str)
 void	_dupping(t_data *data, int *fd)
 {
 	if (data->in == 0 && fd[0] > 2)
-		close(fd[0]);	if (data->in > 2)
+		close(fd[0]);	
+	if (data->in > 2)
 	{
 		if (dup2(data->in, STDIN_FILENO) < 0)
 			internal_error_msg("minishell: ", errno);
