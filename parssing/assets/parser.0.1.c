@@ -6,7 +6,7 @@
 /*   By: yachaab <yachaab@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/03 17:25:58 by yachaab           #+#    #+#             */
-/*   Updated: 2023/08/08 15:08:47 by yachaab          ###   ########.fr       */
+/*   Updated: 2023/08/12 17:37:33 by yachaab          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@ void	expand_in_file(t_parser_var *var)
 
 	exp = NULL;
 	find_unprintable_and_replace_with_char(var->token->value);
-	exp = expand(var->token->value, var->envp);
+	exp = expand(var->token->value, g_glob.envp);
 	if (exp && (!exp[0] || variable_contain_white_space(exp)))
 	{
 		g_glob.ambiguous = -1;

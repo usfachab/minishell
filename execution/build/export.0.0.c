@@ -6,7 +6,7 @@
 /*   By: yachaab <yachaab@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/23 22:53:17 by yachaab           #+#    #+#             */
-/*   Updated: 2023/08/10 15:51:06 by yachaab          ###   ########.fr       */
+/*   Updated: 2023/08/12 23:10:55 by yachaab          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,9 +33,15 @@ static void	make_arg_a_env_variable(char *arg, t_list *env, t_parser_var *var)
 int	check_if_variable_is_valid(char *cmd)
 {
 	if (!alphaunder(*cmd))
+	{
+		g_glob.exit_status = 1;
 		return (0);
+	}
 	if (!alphanumunder(cmd))
+	{
+		g_glob.exit_status = 1;
 		return (0);
+	}
 	return (1);
 }
 
@@ -90,12 +96,13 @@ void	_export(t_parser_var *var, t_data *data)
 	t_list	*env;
 	char	**cmd;
 
-	env = var->env;
+	env = g_glob.env;
 	cmd = data->cmd_args;
 	if (!(*(cmd + 1)))
 		show_exported_variables(env);
 	else
+	{
 		add_arg_to_env_list(cmd + 1, env, var);
-	if ((*(cmd + 1)))
-		convert_to_array(var);
+		convert_to_array();
+	}
 }

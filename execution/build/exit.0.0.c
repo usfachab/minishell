@@ -6,7 +6,7 @@
 /*   By: yachaab <yachaab@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/23 22:55:29 by yachaab           #+#    #+#             */
-/*   Updated: 2023/08/09 20:55:20 by yachaab          ###   ########.fr       */
+/*   Updated: 2023/08/13 00:23:35 by yachaab          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@ void	ft_print_exit_err(char *str)
 {
 	write (2, "exit\n", 5);
 	write (2, "minishell: exit: ", 18);
-	write(2, str, ft_strlen(str));
+	write (2, str, ft_strlen(str));
 	write (2, " numeric argument required\n", 28);
 	g_glob.exit_status = 255;
 	exit(255);

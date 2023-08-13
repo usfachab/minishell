@@ -25,7 +25,7 @@
 # include <ctype.h>
 # include <stdbool.h>
 # include <fcntl.h>
-# include<limits.h>
+# include <limits.h>
 # include "parser.h"
 
 /* ----------------------------- parser  --------------------------------*/
@@ -43,7 +43,7 @@ t_file			*ft_lstnew_subnode(char *content, int type);
 void			ft_lstadd_back_node(t_data **lst, t_data *new);
 void			ft_lstadd_back_subnode(t_file **lst, t_file *new);
 char			*_join(char *path, char *cmd);
-char			**split(char *str, char del);
+char			**split(char *str, char *del);
 /* ---------------------------- lexer -----------------------------------*/
 t_lexer			*init_lexer(char *content);
 char			*lexer_collect_string(t_lexer *lexer);
@@ -86,7 +86,7 @@ void			reset(t_parser_var *var);
 /* ---------------------------- SkipQuote -------------------------------*/
 char			*remove_quote(char *value);
 /* ---------------------------- EnvVariables ----------------------------*/
-void			init_var_with_env_variable(t_parser_var	*var, char **env);
+void			init_var_with_env_variable(char **env);
 /* ---------------------------- Execution -------------------------------*/
 void			execution(t_parser_var *var);
 /* ---------------------------- libft -----------------------------------*/
@@ -101,7 +101,7 @@ char			*ft_strrchr(const char *s, int c);
 /*----------------------------- signal handle ---------------------------*/
 void			sighandler(int sig);
 /*------------------------ convert and split path -----------------------*/
-void			convert_to_array(t_parser_var *var);
+void			convert_to_array(void);
 char			*_join_path(char *path, char *cmd);
 /*-------------------------------- Helper -------------------------------*/
 t_list			*ft_lstnew(char *content);

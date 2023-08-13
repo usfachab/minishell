@@ -6,7 +6,7 @@
 /*   By: yachaab <yachaab@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/17 00:48:06 by yachaab           #+#    #+#             */
-/*   Updated: 2023/08/08 15:58:34 by yachaab          ###   ########.fr       */
+/*   Updated: 2023/08/12 17:37:33 by yachaab          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,7 @@ void	expand_in_command(t_parser_var *var)
 
 	exp = NULL;
 	find_unprintable_and_replace_with_char(var->token->value);
-	exp = expand(var->token->value, var->envp);
+	exp = expand(var->token->value, g_glob.envp);
 	if (exp && exp != var->token->value)
 	{
 		free(var->token->value);
@@ -58,7 +58,7 @@ void	create_node(t_parser_var *var)
 		if (var->lexer->c)
 			free(var->token->value);
 		find_char_and_replace_with_unprintable(var->command);
-		var->_command = split(var->command, ' ');
+		var->_command = split(var->command, " \t");
 		find_unprintable_replace_space(var->_command);
 		ft_lstadd_back_node(&(var->data),
 			ft_lstnew_node(var->_command, var->file));

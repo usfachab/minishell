@@ -6,7 +6,7 @@
 /*   By: yachaab <yachaab@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/21 15:59:08 by yachaab           #+#    #+#             */
-/*   Updated: 2023/08/09 13:46:46 by yachaab          ###   ########.fr       */
+/*   Updated: 2023/08/12 17:37:33 by yachaab          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -116,7 +116,7 @@ bool	heredoc(t_parser_var *var)
 		while (file)
 		{
 			if (file->type == 5 || file->type == 6)
-				rec_sig = piping_forking(data, file, var->envp);
+				rec_sig = piping_forking(data, file, g_glob.envp);
 			if (!rec_sig)
 				return (false);
 			file = file->next;

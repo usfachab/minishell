@@ -6,7 +6,7 @@
 /*   By: yachaab <yachaab@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/23 22:57:18 by yachaab           #+#    #+#             */
-/*   Updated: 2023/08/11 16:38:26 by yachaab          ###   ########.fr       */
+/*   Updated: 2023/08/12 14:06:15 by yachaab          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,7 +63,10 @@ t_list	*check_for_variable_existance(char *arg, t_list *env)
 			return (tenv);
 		}
 		else
+		{
 			free(env_key_name);
+			env_key_name = NULL;
+		}
 		tenv = tenv->next;
 	}
 	free(key_name);

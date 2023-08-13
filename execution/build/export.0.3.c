@@ -6,7 +6,7 @@
 /*   By: yachaab <yachaab@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/10 15:12:53 by yachaab           #+#    #+#             */
-/*   Updated: 2023/08/10 15:16:29 by yachaab          ###   ########.fr       */
+/*   Updated: 2023/08/12 23:09:50 by yachaab          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,15 +21,18 @@ int	alphaunder(char c)
 
 int	alphanumunder(char *cmd)
 {
-	char	*equale;
-
-	cmd = &(*(cmd + 1));
-	equale = strchr(cmd, '=');
-	while (equale && cmd && cmd < equale)
+	char	*equal;
+	int		size;
+	
+	equal = ft_strchr(cmd, '=');
+	if (equal)
+		cmd[equal - cmd] = 0;
+	size = ft_strlen(cmd) - 1;
+	while (size > 0)
 	{
-		if (!alphaunder(*cmd) && (!((*cmd >= 48 && *cmd <= 57) || *cmd == '+')))
+		if (!alphaunder(cmd[size]) && (!((cmd[size] >= 48 && cmd[size] <= 57) || cmd[size] == '+')))
 			return (0);
-		cmd++;
+		size--;
 	}
 	return (1);
 }

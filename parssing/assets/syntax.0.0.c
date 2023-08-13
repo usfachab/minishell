@@ -6,7 +6,7 @@
 /*   By: yachaab <yachaab@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/24 13:38:06 by yachaab           #+#    #+#             */
-/*   Updated: 2023/08/08 15:04:39 by yachaab          ###   ########.fr       */
+/*   Updated: 2023/08/12 22:35:08 by yachaab          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -71,13 +71,25 @@ void	*syntax_err(char *input)
 {
 	find_char_and_replace_with_unprintable(input);
 	if (!unclosed_quote(input))
+	{
+		g_glob.exit_status = 258;
 		return (NULL);
+	}
 	if (!pipe_err(input))
+	{
+		g_glob.exit_status = 258;
 		return (NULL);
+	}
 	if (!redirection_error(input))
+	{
+		g_glob.exit_status = 258;
 		return (NULL);
+	}
 	if (!white_space_only(input))
+	{
+		g_glob.exit_status = 258;
 		return (NULL);
+	}
 	find_unprintable_and_replace_with_char(input);
 	return ("OK");
 }

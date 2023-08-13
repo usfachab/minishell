@@ -6,7 +6,7 @@
 /*   By: yachaab <yachaab@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/25 16:25:48 by yachaab           #+#    #+#             */
-/*   Updated: 2023/08/11 16:24:37 by yachaab          ###   ########.fr       */
+/*   Updated: 2023/08/12 22:42:23 by yachaab          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,50 +26,50 @@ static char	*find_path(char **env)
 	return (NULL);
 }
 
-static char	**splitpath(t_parser_var *var)
+static char	**splitpath(void)
 {
 	char	**splited_path;
 	char	*path;
 
-	path = find_path(var->envp);
+	path = find_path(g_glob.envp);
 	if (!path)
 		return (NULL);
-	splited_path = split(path, ':');
+	splited_path = split(path, ":\0");
 	return (splited_path);
 }
 
-void	convert_to_array_help(t_parser_var *var)
+void	convert_to_array_help(void)
 {
-	if (var->envp)
+	if (g_glob.envp)
 	{
-		free(var->envp);
-		var->envp = NULL;
+		free(g_glob.envp);
+		g_glob.envp = NULL;
 	}
 }
 
-void	convert_to_array(t_parser_var *var)
+void	convert_to_array(void)
 {
-	t_list			*envp;
+	t_list			*lst;
 	int				i;
 
-	envp = var->env;
-	convert_to_array_help(var);
-	var->envp = malloc((ft_lstsize(envp) + 1) * sizeof(char *));
+	lst = g_glob.env;
+	convert_to_array_help();
+	g_glob.envp = malloc((ft_lstsize(lst) + 1) * sizeof(char *));
 	i = 0;
-	while (envp)
+	while (lst)
 	{
-		var->envp[i] = envp->content;
+		g_glob.envp[i] = lst->content;
 		i++;
-		envp = envp->next;
+		lst = lst->next;
 	}
-	var->envp[i] = NULL;
+	g_glob.envp[i] = NULL;
 	i = 0;
-	while (var->splited_path && var->splited_path[i])
+	while (g_glob.splited_path && g_glob.splited_path[i])
 	{
-		free(var->splited_path[i]);
+		free(g_glob.splited_path[i]);
 		i++;
 	}
-	if (var->splited_path)
-		free(var->splited_path);
-	var->splited_path = splitpath(var);
+	if (g_glob.splited_path)
+		free(g_glob.splited_path);
+	g_glob.splited_path = splitpath();
 }

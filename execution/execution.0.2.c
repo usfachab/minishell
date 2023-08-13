@@ -6,7 +6,7 @@
 /*   By: yachaab <yachaab@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/02 17:08:57 by yachaab           #+#    #+#             */
-/*   Updated: 2023/08/10 21:50:52 by yachaab          ###   ########.fr       */
+/*   Updated: 2023/08/13 00:39:36 by yachaab          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -78,8 +78,8 @@ void	execute(t_parser_var *var, t_data *data, int *fd)
 	if (data->cmd_args[0])
 	{
 		str = ft_strrchr(data->cmd_args[0], '/');
-		path = join_with_path(var->splited_path, data, str);
-		execve(path, data->cmd_args, var->envp);
+		path = join_with_path(g_glob.splited_path, data, str);
+		execve(path, data->cmd_args, g_glob.envp);
 		internal_error_msg("minishell: ", errno);
 	}
 }

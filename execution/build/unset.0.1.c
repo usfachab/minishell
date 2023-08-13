@@ -6,7 +6,7 @@
 /*   By: yachaab <yachaab@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/11 16:26:00 by yachaab           #+#    #+#             */
-/*   Updated: 2023/08/11 17:25:20 by yachaab          ###   ########.fr       */
+/*   Updated: 2023/08/12 15:41:13 by yachaab          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,6 @@
 
 int	compare_keys(t_list *e, char *arg)
 {
-	int		size;
 	char	*envkey;
 	char	*equal;
 
@@ -24,10 +23,14 @@ int	compare_keys(t_list *e, char *arg)
 	equal = ft_strchr(envkey, '=');
 	if (equal)
 		envkey[equal - envkey] = 0;
-	size = ft_strlen(envkey);
-	free(envkey);
-	if (!ft_strncmp(e->content, arg, size))
+	if (!ft_strcmp(envkey, arg))
+	{
+		free(envkey);
+		envkey = NULL;
 		return (1);
+	}
+	free(envkey);
+	envkey = NULL;
 	return (0);
 }
 

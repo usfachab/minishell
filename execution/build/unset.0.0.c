@@ -6,7 +6,7 @@
 /*   By: yachaab <yachaab@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/23 22:52:22 by yachaab           #+#    #+#             */
-/*   Updated: 2023/08/11 18:25:30 by yachaab          ###   ########.fr       */
+/*   Updated: 2023/08/12 22:59:29 by yachaab          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,7 +65,7 @@ static int	valid_argument(char *arg)
 	return (1);
 }
 
-void	_unset(t_parser_var *var, char **args)
+void	_unset(char **args)
 {
 	int		i;
 	t_list	*tenv;
@@ -75,14 +75,14 @@ void	_unset(t_parser_var *var, char **args)
 		return ;
 	while (args[i])
 	{
-		tenv = var->env;
+		tenv = g_glob.env;
 		if (!valid_argument(args[i]))
 		{
 			msg_error(args[i]);
-			return;
+			return ;
 		}
-		var->env = remove_node(tenv, args[i]);
+		g_glob.env = remove_node(tenv, args[i]);
 		i++;
 	}
-	convert_to_array(var);
+	convert_to_array();
 }

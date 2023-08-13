@@ -6,7 +6,7 @@
 /*   By: yachaab <yachaab@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/15 21:26:45 by yachaab           #+#    #+#             */
-/*   Updated: 2023/08/09 11:47:48 by yachaab          ###   ########.fr       */
+/*   Updated: 2023/08/12 18:08:13 by yachaab          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,14 +26,14 @@ void	sighandler(int sig)
 t_parser_var	*intitial_and_signals(t_parser_var *var, char **env)
 {
 	var = malloc(sizeof(t_parser_var));
-	var->envp = NULL;
+	g_glob.envp = NULL;
 	var->pid = NULL;
 	if (!var)
 	{
 		perror("");
 		exit(ENOMEM);
 	}
-	init_var_with_env_variable(var, env);
+	init_var_with_env_variable(env);
 	return (var);
 }
 
@@ -72,11 +72,10 @@ int	main(int argc, char *argv[], char *env[])
 	(void)argv;
 	var = NULL;
 	input = NULL;
-	(void)env;
 	var = intitial_and_signals(var, env);
 	sig();
 	the_main_loop(var, input);
-	free(var->envp);
+	free(g_glob.envp);
 	free(var);
 	return (0);
 }

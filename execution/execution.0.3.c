@@ -6,7 +6,7 @@
 /*   By: yachaab <yachaab@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/09 18:34:21 by yachaab           #+#    #+#             */
-/*   Updated: 2023/08/11 16:37:42 by yachaab          ###   ########.fr       */
+/*   Updated: 2023/08/13 01:25:15 by yachaab          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,10 @@ void	ft_main_help(t_parser_var *var, t_data *d, int *fd, int i)
 	if (!var->pid[i])
 	{
 		if (d->unopened_file == -1)
+		{
+			g_glob.exit_status = 1;
 			exit (1);
+		}
 		execute_in_child_proc(var, d, fd);
 	}
 	else
@@ -37,7 +40,7 @@ int	fork_fail(int pid)
 {
 	if (pid < 0)
 	{
-		perror("");
+		perror("minishell: fork: ");
 		g_glob.exit_status = 1;
 		return (0);
 	}

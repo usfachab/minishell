@@ -6,22 +6,12 @@
 /*   By: yachaab <yachaab@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/02 16:17:03 by yachaab           #+#    #+#             */
-/*   Updated: 2023/08/09 20:27:18 by yachaab          ###   ########.fr       */
+/*   Updated: 2023/08/12 17:26:57 by yachaab          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef PARSER_H
 # define PARSER_H
-
-typedef struct s_glob
-{
-	char	*pwd;
-	char	*pwd_helper;
-	char	*oldpwd;
-	int		interapt_main_signal;
-	int		exit_status;
-	int		ambiguous;
-}	t_glob;
 
 typedef struct s_list
 {
@@ -85,10 +75,7 @@ typedef struct SKIP_QUOTE_STRUCT
 
 typedef struct PARSER_VARIABLES
 {
-	char			**envp;
-	char			**splited_path;
 	char			**_command;
-	t_list			*env;
 	t_data			*data;
 	t_lexer			*lexer;
 	t_token			*token;
@@ -120,5 +107,15 @@ typedef struct s_expand
 	char	s;
 	char	d;
 }	t_expand;
+
+typedef struct s_glob
+{
+	char	**splited_path;
+	char	**envp;
+	t_list	*env;
+	int		interapt_main_signal;
+	int		exit_status;
+	int		ambiguous;
+}	t_glob;
 t_glob	g_glob;
 #endif

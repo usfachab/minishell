@@ -6,7 +6,7 @@
 /*   By: yachaab <yachaab@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/27 15:07:07 by yachaab           #+#    #+#             */
-/*   Updated: 2023/08/10 22:32:09 by yachaab          ###   ########.fr       */
+/*   Updated: 2023/08/13 01:14:27 by yachaab          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,20 +15,17 @@
 static void	which_builtin(t_parser_var *var, int index, t_data *data)
 {
 	if (index == 0)
-		_pwd(var->env);
+		_pwd();
 	else if (index == 1)
-		ft_cd(var, data);
+		_cd(data->cmd_args);
 	else if (index == 2)
-	{
 		_echo(data->cmd_args);
-		g_glob.exit_status = 0;
-	}
 	else if (index == 3)
-		ft_env(var->env);
+		ft_env(g_glob.env);
 	else if (index == 4)
 		_export(var, data);
 	else if (index == 5)
-		_unset(var, data->cmd_args);
+		_unset(data->cmd_args);
 	else if (index == 6)
 		ft_exit(data);
 }

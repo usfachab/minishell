@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   util.0.0.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: selrhair <selrhair@student.42.fr>          +#+  +:+       +#+        */
+/*   By: yachaab <yachaab@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/30 23:26:15 by yachaab           #+#    #+#             */
-/*   Updated: 2023/08/07 15:18:29 by selrhair         ###   ########.fr       */
+/*   Updated: 2023/08/12 21:53:05 by yachaab          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,6 +65,8 @@ size_t	ft_strlen(const char *s)
 	size_t	i;
 
 	i = 0;
+	if (!s)
+		return (0);
 	while (s && s[i])
 		i++;
 	return (i);

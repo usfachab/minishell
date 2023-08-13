@@ -6,7 +6,7 @@
 /*   By: yachaab <yachaab@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/11 16:19:06 by selrhair          #+#    #+#             */
-/*   Updated: 2023/08/11 16:34:10 by yachaab          ###   ########.fr       */
+/*   Updated: 2023/08/13 01:26:20 by yachaab          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,25 +51,24 @@ static int	run_built_in_parent(t_data *d, t_parser_var *v)
 	char	*arg;
 
 	arg = d->cmd_args[0];
-	if (v->list_size == 1 && arg && !ft_strcmp(arg, "cd"))
+	if (arg && !ft_strcmp(arg, "cd"))
 	{
-		ft_cd(v, d);
+		_cd(d->cmd_args);
 		return (0);
 	}
-	else if (!d->next && arg && !ft_strcmp(arg, "export") && v->list_size == 1)
+	else if (!d->next && arg && !ft_strcmp(arg, "export") && d->out < 2)
 	{
 		_export(v, d);
 		return (0);
 	}
 	else if (!d->next && arg && !ft_strcmp(arg, "unset"))
 	{
-		_unset(v, d->cmd_args);
+		_unset(d->cmd_args);
 		return (0);
 	}
 	else if (!d->next && arg && !ft_strcmp(arg, "echo") && d->out < 2)
 	{
 		_echo(d->cmd_args);
-		g_glob.exit_status = 0;
 		return (0);
 	}
 	return (1);
@@ -86,13 +85,13 @@ static int	main_child_loop(t_parser_var *var, t_data *d, int *fd)
 	{
 		d->unopened_file = 0;
 		j = open_file_loop(d);
-		if (!j)
+		if (!j || j == -1)
 		{
 			d = d->next;
 			continue ;
 		}
-		if (!d->next && !run_built_in_parent(d, var))
-			return (0);
+		if (!d->next && var->list_size == 1 && !run_built_in_parent(d, var))
+			return (1);
 		open_pipe(d, fd);
 		var->pid[i] = fork();
 		if (!fork_fail(var->pid[i]))

@@ -6,7 +6,7 @@
 /*   By: yachaab <yachaab@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/24 00:41:55 by yachaab           #+#    #+#             */
-/*   Updated: 2023/07/31 05:56:19 by yachaab          ###   ########.fr       */
+/*   Updated: 2023/08/12 21:54:41 by yachaab          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,15 +34,15 @@ char	*ft_strjoin(char const *s1, char const *s2)
 
 	i = 0;
 	j = 0;
-	if (s1 == NULL || s2 == NULL)
+	if (s1 == NULL)
 		return (NULL);
 	p = (char *) malloc ((ft_strlen (s1) + ft_strlen(s2) + 1) * sizeof(char));
-	if (p == 0)
-		return (0);
-	while (s1[j])
+	if (!p)
+		return (NULL);
+	while (s1 && s1[j])
 		p[i++] = s1[j++];
 	j = 0;
-	while (s2[j])
+	while (s2 && s2[j])
 		p[i++] = s2[j++];
 	p[i] = '\0';
 	return (p);

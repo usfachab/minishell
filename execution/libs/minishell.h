@@ -6,7 +6,7 @@
 /*   By: yachaab <yachaab@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/18 16:54:44 by selrhair          #+#    #+#             */
-/*   Updated: 2023/08/11 16:37:24 by yachaab          ###   ########.fr       */
+/*   Updated: 2023/08/12 23:43:17 by yachaab          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,10 +19,12 @@ void	_dupping(t_data *data, int *fd);
 void	parent_closing_pipe_part(t_data *data, int *fd);
 int		count_data(t_parser_var *var);
 void	wait__signal(t_parser_var *var, int stat);
-void	_pwd(t_list *env);
+void	_pwd(void);
 void	_echo(char **cmd);
-void	_unset(t_parser_var *var, char **args);
-int		ft_cd(t_parser_var *var, t_data *data);
+void	_unset(char **args);
+// int		ft_cd(t_parser_var *var, t_data *data);
+char	*node_content(t_list *e, char *arg);
+int		_cd(char **arg);
 int		ft_exit(t_data *data);
 bool	heredoc(t_parser_var *var);
 int		open_file_loop(t_data *data);
@@ -38,7 +40,7 @@ long	ft_atoi(char *str);
 void	ft_print_exit_err(char *str);
 void	print_exit(char *cmd);
 void	ft_tmp(char *cmd);
-void	ft_store_pwd(t_parser_var *env);
+// void	ft_store_pwd(t_parser_var *env);
 void	ft_main_help(t_parser_var *var, t_data *d, int *fd, int i);
 void	ambiguous_error(t_file *file);
 void	execute_in_child_proc(t_parser_var *var, t_data *data, int *fd);
@@ -50,4 +52,5 @@ void	ft_lstdelone(t_list *lst, t_list *next);
 int		compare_keys(t_list *e, char *arg);
 t_list	*remove_head(t_list *env);
 int		fork_fail(int pid);
+void	set_pwd(char *arg, char *var);
 #endif

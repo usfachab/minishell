@@ -6,7 +6,7 @@
 /*   By: yachaab <yachaab@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/22 20:18:38 by yachaab           #+#    #+#             */
-/*   Updated: 2023/08/02 16:19:19 by yachaab          ###   ########.fr       */
+/*   Updated: 2023/08/12 13:05:06 by yachaab          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,7 @@ char	**ft_free(char **word)
 	return (NULL);
 }
 
-int	count_word(const char *string, char delim)
+int	count_word(const char *string, char *delim)
 {
 	int	i;
 	int	count;
@@ -37,15 +37,16 @@ int	count_word(const char *string, char delim)
 		return (0);
 	while (string[i])
 	{
-		if (string[i] != delim
-			&& (string[i + 1] == delim || string[i + 1] == '\0'))
+		if (string[i] != delim[0] && string[i] != delim[1]
+			&& (string[i + 1] == delim[0] || string[i + 1] == delim[1]
+				|| string[i + 1] == '\0'))
 			count++;
 		i++;
 	}
 	return (count);
 }
 
-char	*collect_string(char *str, char del, int *i)
+char	*collect_string(char *str, char *del, int *i)
 {
 	int			len;
 	char		*string;
@@ -53,9 +54,9 @@ char	*collect_string(char *str, char del, int *i)
 
 	len = 0;
 	string = NULL;
-	while (str[*i] == del)
+	while (str[*i] == del[0] || str[*i] == del[1])
 		*i += 1;
-	while (str[*i] != del && str[*i] != '\0')
+	while (str[*i] != del[0] && str[*i] != del[1] && str[*i] != '\0')
 	{
 		tmp = malloc(len + 2);
 		if (!tmp)
@@ -74,7 +75,7 @@ char	*collect_string(char *str, char del, int *i)
 	return (string);
 }
 
-char	**split(char *str, char del)
+char	**split(char *str, char *del)
 {
 	int			i;
 	int			index;
