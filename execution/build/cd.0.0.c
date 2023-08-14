@@ -69,6 +69,13 @@ int	_cd(char **arg)
 {
 	char	*oldpwd;
 
+	if (arg[1] && arg[2])
+	{
+		write(2, "minishell: cd: ", 16);
+		write(2, "too many arguments\n", 20);
+		g_glob.exit_status = 1;
+		return (0);
+	}
 	oldpwd = getcwd(NULL, 0);
 	if ((!arg[1] || arg[1][0] == '~'))
 		go_home(oldpwd);

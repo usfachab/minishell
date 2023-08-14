@@ -85,7 +85,7 @@ char	*join_with_path(char **splited_path, t_data *data, char *str)
 void	_dupping(t_data *data, int *fd)
 {
 	if (data->in == 0 && fd[0] > 2)
-		close(fd[0]);	
+		close(fd[0]);
 	if (data->in > 2)
 	{
 		if (dup2(data->in, STDIN_FILENO) < 0)

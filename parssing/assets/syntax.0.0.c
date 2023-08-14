@@ -86,10 +86,7 @@ void	*syntax_err(char *input)
 		return (NULL);
 	}
 	if (!white_space_only(input))
-	{
-		g_glob.exit_status = 258;
 		return (NULL);
-	}
 	find_unprintable_and_replace_with_char(input);
 	return ("OK");
 }

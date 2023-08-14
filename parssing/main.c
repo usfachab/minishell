@@ -20,6 +20,7 @@ void	sighandler(int sig)
 		rl_on_new_line();
 		rl_replace_line("", 0);
 		rl_redisplay();
+		g_glob.exit_status = 130;
 	}
 }
 
@@ -52,7 +53,7 @@ void	the_main_loop(t_parser_var *var, char *input)
 		g_glob.interapt_main_signal = 0;
 		input = readline("minishell -> ");
 		if (!input)
-			exit(0);
+			exit(g_glob.exit_status);
 		if (*input && syntax_err(input))
 		{
 			add_history(input);

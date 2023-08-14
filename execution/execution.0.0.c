@@ -64,6 +64,9 @@ static int	main_child_loop(t_parser_var *var, t_data *d)
 	int	fd[2];
 
 	i = 0;
+	fd[0] = -1;
+	fd[1] = -1;
+	d->prev = -1;
 	var->pid = malloc(sizeof(pid_t) * (count_data(var) + 1));
 	while (d)
 	{

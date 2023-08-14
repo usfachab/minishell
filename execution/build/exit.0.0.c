@@ -18,8 +18,8 @@ void	ft_print_exit_err(char *str)
 	write (2, "minishell: exit: ", 18);
 	write (2, str, ft_strlen(str));
 	write (2, " numeric argument required\n", 28);
-	g_glob.exit_status = 255;
-	exit(255);
+	g_glob.exit_status = 2;
+	exit(2);
 }
 
 int	ft_just_number(char *str)
@@ -46,8 +46,8 @@ int	ft_exit_help(t_data *data)
 	{
 		write (1, "exit\n", 5);
 		write (2, "exit: numeric argument required\n", 32);
-		g_glob.exit_status = 255;
-		exit(255);
+		g_glob.exit_status = 2;
+		exit(2);
 	}
 	else if (data->cmd_args[2])
 	{
