@@ -6,9 +6,11 @@
 /*   By: yachaab <yachaab@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/23 22:54:44 by yachaab           #+#    #+#             */
-/*   Updated: 2023/08/12 22:36:57 by yachaab          ###   ########.fr       */
+/*   Updated: 2023/08/14 15:56:40 by yachaab          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
+
+
 
 #include "../libs/minishell.h"
 
@@ -36,6 +38,8 @@ void	go_dir(char *arg, char *oldpwd)
 		set_pwd_and_oldpwd(oldpwd);
 	else
 	{
+		if (errno == 116)
+			errno = 2;
 		perror("minishell: cd: ");
 		g_glob.exit_status = 1;
 	}

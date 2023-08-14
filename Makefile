@@ -1,8 +1,8 @@
 NAME		=	minishell
 
-CC			=	cc
+CC			=	gcc-11
 
-CFALGS		=	-Wall -Wextra -Werror -fcommon -g3 #-fsanitize=address
+CFALGS		=	-Wall -Wextra -Werror -fcommon #-g3 -fsanitize=address
 
 NONE		=	\033[0m
 YALLOW		=	\033[1;93m
@@ -35,7 +35,7 @@ $(NAME) : $(OBJ_PAR) $(OBJ_EXE)
 	@echo  "$(Green)Compiled success$(NONE)"
 
 %.o : %.c
-	@$(CC) $(CFALGS) -c $< -o $@ -lreadline
+	@$(CC) $(CFALGS) -c $< -o $@
 
 git : 
 	make fclean && git add . && git commit -m "NORM -> OK | FINAL VERSION" && git push -f origin master
