@@ -6,7 +6,7 @@
 /*   By: yachaab <yachaab@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/11 16:19:06 by selrhair          #+#    #+#             */
-/*   Updated: 2023/08/13 19:22:20 by yachaab          ###   ########.fr       */
+/*   Updated: 2023/08/15 12:03:47 by yachaab          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,7 +52,7 @@ static int	run_built_in_parent(t_data *d, t_parser_var *v)
 
 	arg = d->cmd_args[0];
 	if (d->unopened_file == -1)
-			g_glob.exit_status = 1;
+		g_glob.exit_status = 1;
 	if (!run_in(arg, d, v))
 		return (0);
 	return (1);

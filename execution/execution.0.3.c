@@ -6,7 +6,7 @@
 /*   By: yachaab <yachaab@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/09 18:34:21 by yachaab           #+#    #+#             */
-/*   Updated: 2023/08/13 17:33:09 by yachaab          ###   ########.fr       */
+/*   Updated: 2023/08/15 12:04:04 by yachaab          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,7 +64,7 @@ int	run_in(char *arg, t_data *d, t_parser_var *v)
 		_unset(d->cmd_args);
 		return (0);
 	}
-	else if (!d->next && arg && !ft_strcmp(arg, "echo") && d->out == 1 )
+	else if (!d->next && arg && !ft_strcmp(arg, "echo") && d->out == 1)
 	{
 		_echo(d->cmd_args);
 		return (0);
