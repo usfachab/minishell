@@ -38,7 +38,7 @@ $(NAME) : $(OBJ_PAR) $(OBJ_EXE)
 	@$(CC) $(CFALGS) -c $< -o $@
 
 git : 
-	make fclean && git add . && git commit -m "NORM -> OK | FINAL VERSION" && git push -f origin master
+	make fclean && git add . && git commit -m "FINAL VERSION" && git push -f origin master
 
 clean :
 	@echo "$(YALLOW)Cleaning$(NONE)"
